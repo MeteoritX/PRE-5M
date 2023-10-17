@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
                 if(!alarmtime.equals("")){
                     if(tc.getText().toString().equals(alarmtime)){
                         //r.play();
-                        MediaPlayer mediaPlayer = MediaPlayer.create(getApplicationContext(), Settings.System.);
+                        MediaPlayer mediaPlayer = MediaPlayer.create(getApplicationContext(), Settings.System.DEFAULT_ALARM_ALERT_URI);
                         mediaPlayer.start();
                         tv.setText("Bitte Aufwachen");
                     }
