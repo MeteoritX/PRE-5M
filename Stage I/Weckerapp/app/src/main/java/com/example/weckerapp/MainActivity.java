@@ -11,6 +11,7 @@ import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TabHost;
 import android.widget.TextClock;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -21,12 +22,7 @@ import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextClock tc;
-    TimePicker tp;
-    String alarmtime = "";
-    String currenttime = "";
-    TextView tv;
-    //final Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM));
+
 
 
     @Override
@@ -34,33 +30,27 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        tv = findViewById(R.id.textView);
-        tc = findViewById(R.id.tec);
-        tp = findViewById(R.id.tip);
-        tc.setFormat24Hour("k:mm");
-        tc.setFormat12Hour(null);
-        Timer t = new Timer();
-        t.scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
-                if(!alarmtime.equals("")){
-                    if(tc.getText().toString().equals(alarmtime)){
-                        //r.play();
-                        MediaPlayer mediaPlayer = MediaPlayer.create(getApplicationContext(), Settings.System.DEFAULT_ALARM_ALERT_URI);
-                        mediaPlayer.start();
-                        tv.setText("Bitte Aufwachen");
-                    }
-                }
-            }
-        },0,1000);
+        TabHost tabHost = (TabHost) findViewById(R.id.tabHost);
+        tabHost.setup();
+        TabHost.TabSpec spec = tabHost.newTabSpec("Wecker");
+        spec.setContent(R.id.tab1);
+        spec.setIndicator("Wecker");
+        tabHost.addTab(spec);
+
+        spec = tabHost.newTabSpec("Timer");
+        spec.setContent(R.id.tab2);
+        spec.setIndicator("Timer");
+        tabHost.addTab(spec);
+
+        spec = tabHost.newTabSpec("Stoppuhr");
+        spec.setContent(R.id.tab3);
+        spec.setIndicator("Stoppuhr");
+        tabHost.addTab(spec);
+
+
+
 
 
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    public void onClickAlarmSetzten(View view){
-
-        alarmtime = tp.getHour()+":"+tp.getMinute();
-        Toast.makeText(this, "Alarm gesetzt", Toast.LENGTH_LONG).show();
-    }
 }
