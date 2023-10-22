@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">Weckerapp</string>
+    <string name="app_name">Atheneos</string>
+    <string name="text_button_setAlarm">Alarm setzen</string>
+    <string name="text_switch_24h">24h Format</string>
 </resources>

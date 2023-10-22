@@ -7,4 +7,8 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="atheneos_ContrastGrey">#888888</color>
+    <color name="atheneos_yellow">#FFA500</color>
+    <color name="atheneos_LightGrey">#6A6A6A</color>
+    <color name="atheneos_DarkGrey">#585858</color>
 </resources>
