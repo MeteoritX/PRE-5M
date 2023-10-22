@@ -7,4 +7,13 @@
         <item name="colorAccent">@color/atheneos_yellow</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="Theme.Weckerapp.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.Weckerapp.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.Weckerapp.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

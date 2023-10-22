@@ -2,4 +2,11 @@
     <string name="app_name">Atheneos</string>
     <string name="text_button_setAlarm">Alarm setzen</string>
     <string name="text_switch_24h">24h Format</string>
+    <string name="text_settings_title">Einstellungen</string>
+    <string name="text_settings_24h">24h Format</string>
+    <string name="text_button_start">Start</string>
+    <string name="text_button_stop">Stopp</string>
+    <string name="text_delta_t">Verstrichene Zeit: </string>
+
+
 </resources>

@@ -1,6 +1,7 @@
 package com.example.weckerapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.media.Ringtone;
@@ -16,6 +17,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.TabHost;
 import android.widget.TextClock;
 import android.widget.TextView;
@@ -26,6 +29,14 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
+
+
+
+    Chronometer chronometer;
+    boolean chronometerRunning;
+    long delta_t;
+    TextView tv_delta_t;
+    Button button_start_stop;
 
 
 
@@ -52,6 +63,12 @@ public class MainActivity extends AppCompatActivity {
         spec.setIndicator("Stoppuhr");
         tabHost.addTab(spec);
 
+        //Initialise reference variables
+        chronometer = (Chronometer)  findViewById(R.id.chron);
+        chronometer.setFormat("%h:%m:%s");
+        chronometerRunning = false;
+        button_start_stop = (Button) findViewById(R.id.button_start_stop);
+        tv_delta_t = (TextView) findViewById(R.id.tv_delta_t);
     }
 
     @Override
@@ -68,6 +85,8 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.settings:
                 Toast.makeText(this, "settings clicked", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(this, SettingsActivity.class);
+                startActivity(intent);
                 return true;
 
             case R.id.alarms:
@@ -81,5 +100,23 @@ public class MainActivity extends AppCompatActivity {
 
     public void button_setAlarm_Clicked(View view) {
 
+    }
+
+
+    public void button_start_stop_Clicked(View view) {
+        if(!chronometerRunning)
+        {
+            chronometer.start();
+            chronometerRunning = true;
+            button_start_stop.setText(getResources().getString(R.string.text_button_stop));
+        }else {
+            chronometer.stop();
+            chronometerRunning = false;
+            button_start_stop.setText(getResources().getString(R.string.text_button_start));
+            delta_t = SystemClock.elapsedRealtime() - chronometer.getBase();
+            tv_delta_t.setText(getResources().getString(R.string.text_delta_t) + "\n" + delta_t);
+
+            //Base-Konflikt beheben u. delta_t rückformatieren
+        }
     }
 }
