@@ -182,6 +182,7 @@ public class MainActivity extends AppCompatActivity {
             int startSec = spinnerClock.getMinute(); //treat as sectond
             int totalMilliseconds = startMin * 60000 + startSec * 1000;
             button_startCountdown.setEnabled(false);
+            countdownRunning = true;
 
             new CountDownTimer(totalMilliseconds, 1000) {
 
@@ -189,7 +190,6 @@ public class MainActivity extends AppCompatActivity {
                     tv_remainingSeconds.setText("" + millisUntilFinished / 1000);
                     spinnerClock.setHour((int) (millisUntilFinished / 60000));
                     spinnerClock.setMinute(((int) (millisUntilFinished / 1000)) % 60);
-                    countdownRunning = true;
                 }
 
                 public void onFinish() {
