@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/button_startCountdown"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:height="70dp"
+        android:background="@color/atheneos_yellow"
+        android:onClick="button_startCountdonwn_Clicked"
+        android:text="@string/text_button_startCountdown"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:translationY="525dp" />
+
+    <TimePicker
+        android:id="@+id/spinnerClock"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleX="1.5"
+        android:scaleY="1.5"
+        android:timePickerMode="spinner"
+        android:translationY="150dp" />
+
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/text_remainingSeconds"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:translationY="400dp" />
+
+    <TextView
+        android:id="@+id/tv_remainingSeconds"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:textAlignment="center"
+        android:textSize="48sp"
+        android:textStyle="bold"
+        android:translationY="420dp" />
+</RelativeLayout>

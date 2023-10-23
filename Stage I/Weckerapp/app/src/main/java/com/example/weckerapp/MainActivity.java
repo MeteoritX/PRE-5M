@@ -9,6 +9,7 @@ import android.media.MediaPlayer;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.os.Build;
+import android.os.CountDownTimer;
 import android.os.SystemClock;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
@@ -39,6 +40,10 @@ public class MainActivity extends AppCompatActivity {
     long delta_t;
     TextView tv_delta_t;
     Button button_start_stop;
+    TextView tv_remainingSeconds;
+    TimePicker spinnerClock;
+    boolean countdownRunning;
+    Button button_startCountdown;
 
     TextClock tc;
     TimePicker tp;
@@ -86,6 +91,16 @@ public class MainActivity extends AppCompatActivity {
         button_start_stop = (Button) findViewById(R.id.button_start_stop);
         tv_delta_t = (TextView) findViewById(R.id.tv_delta_t);
         loadSettings();
+        tv_remainingSeconds = (TextView) findViewById(R.id.tv_remainingSeconds);
+        spinnerClock = (TimePicker) findViewById(R.id.spinnerClock);
+        countdownRunning = false;
+        spinnerClock.setIs24HourView(true);
+        button_startCountdown = (Button) findViewById(R.id.button_startCountdown);
+
+
+
+
+
 
 
         Timer t = new Timer();
@@ -100,8 +115,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         },0,1000);
-
-
     }
 
     @Override
@@ -160,5 +173,37 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("Settings", Context.MODE_PRIVATE);
         boolean switchState = sharedPreferences.getBoolean("switch_24h", false);
         tp.setIs24HourView(switchState);
+    }
+
+    public void button_startCountdonwn_Clicked(View view) {
+        if(!countdownRunning){
+
+            int startMin = spinnerClock.getHour(); //treat as minute
+            int startSec = spinnerClock.getMinute(); //treat as sectond
+            int totalMilliseconds = startMin * 60000 + startSec * 1000;
+            button_startCountdown.setEnabled(false);
+
+            new CountDownTimer(totalMilliseconds, 1000) {
+
+                public void onTick(long millisUntilFinished) {
+                    tv_remainingSeconds.setText("" + millisUntilFinished / 1000);
+                    spinnerClock.setHour((int) (millisUntilFinished / 60000));
+                    spinnerClock.setMinute(((int) (millisUntilFinished / 1000)) % 60);
+                    countdownRunning = true;
+                }
+
+                public void onFinish() {
+                    tv_remainingSeconds.setText("0");
+                    spinnerClock.setHour(0);
+                    spinnerClock.setMinute(0);
+                    countdownRunning = false;
+                    button_startCountdown.setEnabled(true);
+                    MediaPlayer mediaPlayer = MediaPlayer.create(getApplicationContext(), Settings.System.DEFAULT_ALARM_ALERT_URI);
+                    mediaPlayer.start();
+                }
+            }.start();
+        }
+
+
     }
 }
