@@ -3,6 +3,7 @@ package com.example.weckerapp;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.media.Ringtone;
@@ -84,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
         chronometerRunning = false;
         button_start_stop = (Button) findViewById(R.id.button_start_stop);
         tv_delta_t = (TextView) findViewById(R.id.tv_delta_t);
+        loadSettings();
 
 
         Timer t = new Timer();
@@ -122,6 +124,8 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.alarms:
                 Toast.makeText(this, "alarms clicked", Toast.LENGTH_SHORT).show();
+                Intent intent_alarms = new Intent(this, AlarmsActivity.class);
+                startActivity(intent_alarms);
                 return true;
 
             default:
@@ -150,5 +154,11 @@ public class MainActivity extends AppCompatActivity {
 
             //Base-Konflikt beheben u. delta_t rückformatieren
         }
+    }
+
+    public void loadSettings(){
+        SharedPreferences sharedPreferences = getSharedPreferences("Settings", Context.MODE_PRIVATE);
+        boolean switchState = sharedPreferences.getBoolean("switch_24h", false);
+        tp.setIs24HourView(switchState);
     }
 }
