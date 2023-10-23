@@ -55,6 +55,24 @@
                         android:textStyle="bold"
                         android:translationY="525dp" />
 
+                    <Button
+                        android:id="@+id/button_cancleAlarm"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:height="70dp"
+                        android:background="@color/atheneos_yellow"
+                        android:onClick="button_cancleAlarm_Clicked"
+                        android:text="Alarm beenden"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:translationY="600dp" />
+
+                    <TextClock
+                        android:id="@+id/tec"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:translationX="600dp"/>
+
                 </RelativeLayout>
 
                 <LinearLayout

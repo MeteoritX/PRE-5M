@@ -1,5 +1,6 @@
 package com.example.weckerapp;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -38,14 +39,28 @@ public class MainActivity extends AppCompatActivity {
     TextView tv_delta_t;
     Button button_start_stop;
 
+    TextClock tc;
+    TimePicker tp;
+    String alarmtime = "";
+    String currenttime = "";
+    TextView tv;
 
 
 
+
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        tc = findViewById(R.id.tec);
+        tp = findViewById(R.id.tip);
+        tc.setFormat24Hour("k:mm");
+        tc.setFormat12Hour(null);
+
+
+        //Tabs
         TabHost tabHost = (TabHost) findViewById(R.id.tabHost);
         tabHost.setup();
         TabHost.TabSpec spec = tabHost.newTabSpec("Wecker");
@@ -69,6 +84,22 @@ public class MainActivity extends AppCompatActivity {
         chronometerRunning = false;
         button_start_stop = (Button) findViewById(R.id.button_start_stop);
         tv_delta_t = (TextView) findViewById(R.id.tv_delta_t);
+
+
+        Timer t = new Timer();
+        t.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                if(!alarmtime.equals("")){
+                    if(tc.getText().toString().equals(alarmtime)){
+                        MediaPlayer mediaPlayer = MediaPlayer.create(getApplicationContext(), Settings.System.DEFAULT_ALARM_ALERT_URI);
+                        mediaPlayer.start();
+                    }
+                }
+            }
+        },0,1000);
+
+
     }
 
     @Override
@@ -99,7 +130,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void button_setAlarm_Clicked(View view) {
-
+        alarmtime = tp.getHour()+":"+tp.getMinute();
+        Toast.makeText(this, "Alarm gesetzt", Toast.LENGTH_LONG).show();
     }
 
 
