@@ -7,6 +7,4 @@
     <string name="text_button_start">Start</string>
     <string name="text_button_stop">Stopp</string>
     <string name="text_delta_t">Verstrichene Zeit: </string>
-
-
 </resources>
