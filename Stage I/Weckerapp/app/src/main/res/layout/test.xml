@@ -33,4 +33,14 @@
         android:textStyle="bold"
         android:translationY="400dp" />
 
+    <ProgressBar
+        android:id="@+id/progressBar_chrono"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:scaleX="5"
+        android:scaleY="5"
+        android:translationY="100dp" />
+
 </RelativeLayout>

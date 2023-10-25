@@ -14,6 +14,7 @@ import android.os.SystemClock;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -22,6 +23,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
+import android.widget.ProgressBar;
 import android.widget.TabHost;
 import android.widget.TextClock;
 import android.widget.TextView;
@@ -44,12 +46,16 @@ public class MainActivity extends AppCompatActivity {
     TimePicker spinnerClock;
     boolean countdownRunning;
     Button button_startCountdown;
+    FloatingActionButton button_cancelCountdown;
+    ProgressBar progressBar_chronometer;
+    ProgressBar progressBar_decorator;
 
     TextClock tc;
     TimePicker tp;
     String alarmtime = "";
     String currenttime = "";
     TextView tv;
+
 
 
 
@@ -66,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         tc.setFormat12Hour(null);
 
 
-        //Tabs
+        //region Tabs
         TabHost tabHost = (TabHost) findViewById(R.id.tabHost);
         tabHost.setup();
         TabHost.TabSpec spec = tabHost.newTabSpec("Wecker");
@@ -78,11 +84,11 @@ public class MainActivity extends AppCompatActivity {
         spec.setContent(R.id.tab2);
         spec.setIndicator("Timer");
         tabHost.addTab(spec);
-
         spec = tabHost.newTabSpec("Stoppuhr");
         spec.setContent(R.id.tab3);
         spec.setIndicator("Stoppuhr");
         tabHost.addTab(spec);
+        //endregion
 
         //Initialise reference variables
         chronometer = (Chronometer)  findViewById(R.id.chron);
@@ -96,8 +102,15 @@ public class MainActivity extends AppCompatActivity {
         countdownRunning = false;
         spinnerClock.setIs24HourView(true);
         button_startCountdown = (Button) findViewById(R.id.button_startCountdown);
-
-
+        button_cancelCountdown = (FloatingActionButton) findViewById(R.id.button_cancel_countdown);
+        button_cancelCountdown.setEnabled(false);
+        button_cancelCountdown.setAlpha(0.75f);
+        progressBar_chronometer = findViewById(R.id.progressBar_chrono);
+        progressBar_chronometer.setIndeterminate(false);
+        progressBar_chronometer.setMax(59);
+        delta_t = 0;
+        progressBar_decorator = findViewById(R.id.progressBar_decorator);
+        progressBar_decorator.setVisibility(View.INVISIBLE);
 
 
 
@@ -127,6 +140,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        //region Menue Navigatiors
         //Click listener: Checking which menue item has been clicked
         switch (item.getItemId()){
             case R.id.settings:
@@ -144,6 +158,7 @@ public class MainActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+        //endregion Menue Navigators
     }
 
     public void button_setAlarm_Clicked(View view) {
@@ -153,19 +168,33 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void button_start_stop_Clicked(View view) {
+
+
         if(!chronometerRunning)
         {
+            progressBar_decorator.setVisibility(View.VISIBLE);
+            chronometer.setBase(SystemClock.elapsedRealtime());
+
+            chronometer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
+                @Override
+                public void onChronometerTick(Chronometer chronometer) {
+                    delta_t = SystemClock.elapsedRealtime() - chronometer.getBase();
+                    progressBar_chronometer.setProgress((int) ((delta_t/1000)%60));
+                }
+            });
             chronometer.start();
             chronometerRunning = true;
             button_start_stop.setText(getResources().getString(R.string.text_button_stop));
+
+
         }else {
             chronometer.stop();
             chronometerRunning = false;
             button_start_stop.setText(getResources().getString(R.string.text_button_start));
             delta_t = SystemClock.elapsedRealtime() - chronometer.getBase();
-            tv_delta_t.setText(getResources().getString(R.string.text_delta_t) + "\n" + delta_t);
-
-            //Base-Konflikt beheben u. delta_t rückformatieren
+            tv_delta_t.setText(getResources().getString(R.string.text_delta_t) + "\n" + ((float) delta_t/1000) + "s");
+            progressBar_chronometer.setProgress(0);
+            progressBar_decorator.setVisibility(View.INVISIBLE);
         }
     }
 
@@ -174,7 +203,8 @@ public class MainActivity extends AppCompatActivity {
         boolean switchState = sharedPreferences.getBoolean("switch_24h", false);
         tp.setIs24HourView(switchState);
     }
-
+    //region Countdown
+    @SuppressLint("RestrictedApi")
     public void button_startCountdonwn_Clicked(View view) {
         if(!countdownRunning){
 
@@ -183,13 +213,21 @@ public class MainActivity extends AppCompatActivity {
             int totalMilliseconds = startMin * 60000 + startSec * 1000;
             button_startCountdown.setEnabled(false);
             countdownRunning = true;
+            button_cancelCountdown.setEnabled(true);
+            button_cancelCountdown.setAlpha(1.0f);
+
 
             new CountDownTimer(totalMilliseconds, 1000) {
 
                 public void onTick(long millisUntilFinished) {
-                    tv_remainingSeconds.setText("" + millisUntilFinished / 1000);
-                    spinnerClock.setHour((int) (millisUntilFinished / 60000));
-                    spinnerClock.setMinute(((int) (millisUntilFinished / 1000)) % 60);
+                    if(countdownRunning){
+                        tv_remainingSeconds.setText("" + millisUntilFinished / 1000);
+                        spinnerClock.setHour((int) (millisUntilFinished / 60000));
+                        spinnerClock.setMinute(((int) (millisUntilFinished / 1000)) % 60);
+                    }else{
+                        this.cancel();
+                    }
+
                 }
 
                 public void onFinish() {
@@ -198,6 +236,8 @@ public class MainActivity extends AppCompatActivity {
                     spinnerClock.setMinute(0);
                     countdownRunning = false;
                     button_startCountdown.setEnabled(true);
+                    button_cancelCountdown.setEnabled(false);
+                    button_cancelCountdown.setAlpha(0.75f);
                     MediaPlayer mediaPlayer = MediaPlayer.create(getApplicationContext(), Settings.System.DEFAULT_ALARM_ALERT_URI);
                     mediaPlayer.start();
                 }
@@ -206,4 +246,13 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+    @SuppressLint("RestrictedApi")
+    public void button_cancel_countdownClicked(View view) {
+        button_cancelCountdown.setEnabled(false);
+        button_cancelCountdown.setAlpha(0.75f);
+        button_startCountdown.setEnabled(true);
+        countdownRunning = false;
+    }
+    //endregion
 }

@@ -55,17 +55,6 @@
                         android:textStyle="bold"
                         android:translationY="525dp" />
 
-                    <Button
-                        android:id="@+id/button_cancleAlarm"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:height="70dp"
-                        android:background="@color/atheneos_yellow"
-                        android:onClick="button_cancleAlarm_Clicked"
-                        android:text="Alarm beenden"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:translationY="600dp" />
 
                     <TextClock
                         android:id="@+id/tec"
@@ -80,6 +69,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
+                <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
 
                     <Button
                         android:id="@+id/button_startCountdown"
@@ -97,36 +91,51 @@
                         android:id="@+id/spinnerClock"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="100dp"
                         android:scaleX="1.5"
                         android:scaleY="1.5"
                         android:timePickerMode="spinner"
-                        android:translationY="50dp" />
-
-
+                        android:translationY="50dp"/>
 
 
                     <TextView
                         android:id="@+id/textView2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="300dp"
                         android:text="@string/text_remainingSeconds"
                         android:textAlignment="center"
-                        android:textStyle="bold"
-                        android:translationY="100dp"
                         android:textSize="24sp"
-                        />
+                        android:textStyle="bold"
+                        android:translationY="100dp" />
 
                     <TextView
                         android:id="@+id/tv_remainingSeconds"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="320dp"
                         android:text="0"
                         android:textAlignment="center"
+                        android:textSize="48sp"
                         android:textStyle="bold"
-                        android:translationY="120dp"
-                        android:textSize="48sp"/>
+                        android:translationY="120dp" />
 
+                    <android.support.design.widget.FloatingActionButton
+                        android:id="@+id/button_cancel_countdown"
+                        android:layout_width="69dp"
+                        android:layout_height="74dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerInParent="true"
+                        android:layout_marginTop="50dp"
+                        android:clickable="true"
+                        android:focusable="auto"
+                        android:onClick="button_cancel_countdownClicked"
+                        android:scaleX="1.5"
+                        android:scaleY="1.5"
+                        app:maxImageSize="60dp"
+                        app:srcCompat="@drawable/baseline_cancel_countdown" />
 
+                </RelativeLayout>
                 </LinearLayout>
 
                 <LinearLayout
@@ -157,17 +166,40 @@
                             android:layout_height="wrap_content"
                             android:textAlignment="center"
                             android:textSize="50sp"
-                            android:translationY="100dp" />
+                            android:translationY="140dp" />
 
                         <TextView
                             android:id="@+id/tv_delta_t"
                             android:layout_width="match_parent"
-                            android:layout_height="52dp"
+                            android:layout_height="80dp"
                             android:gravity="center_horizontal"
                             android:text="@string/text_delta_t"
                             android:textAlignment="center"
                             android:textStyle="bold"
+                            android:textSize="30sp"
                             android:translationY="400dp" />
+
+                        <ProgressBar
+                            android:id="@+id/progressBar_decorator"
+                            style="?android:attr/progressBarStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:scaleX="6.8"
+                            android:scaleY="6.8"
+                            android:translationY="150dp" />
+
+                        <ProgressBar
+                            android:id="@+id/progressBar_chrono"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:indeterminate="false"
+                            android:scaleX="20"
+                            android:scaleY="20"
+                            android:translationY="165dp"
+                            android:progressDrawable="@drawable/progress_circle_chrono" />
 
                     </RelativeLayout>
                 </LinearLayout>
