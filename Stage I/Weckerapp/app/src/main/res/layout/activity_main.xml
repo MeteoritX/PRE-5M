@@ -69,8 +69,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
-                <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
@@ -180,16 +180,6 @@
                             android:translationY="400dp" />
 
                         <ProgressBar
-                            android:id="@+id/progressBar_decorator"
-                            style="?android:attr/progressBarStyle"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerHorizontal="true"
-                            android:scaleX="6.8"
-                            android:scaleY="6.8"
-                            android:translationY="150dp" />
-
-                        <ProgressBar
                             android:id="@+id/progressBar_chrono"
                             style="?android:attr/progressBarStyleHorizontal"
                             android:layout_width="wrap_content"
@@ -198,6 +188,30 @@
                             android:indeterminate="false"
                             android:scaleX="20"
                             android:scaleY="20"
+                            android:translationY="165dp"
+                            android:progressDrawable="@drawable/progress_circle_chrono" />
+
+                        <ProgressBar
+                            android:id="@+id/progressBar_decorator"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:indeterminate="false"
+                            android:scaleX="25"
+                            android:scaleY="25"
+                            android:translationY="165dp"
+                            android:progressDrawable="@drawable/progress_circle_chrono" />
+
+                        <ProgressBar
+                            android:id="@+id/progressBar_outer"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:indeterminate="false"
+                            android:scaleX="30"
+                            android:scaleY="30"
                             android:translationY="165dp"
                             android:progressDrawable="@drawable/progress_circle_chrono" />
 

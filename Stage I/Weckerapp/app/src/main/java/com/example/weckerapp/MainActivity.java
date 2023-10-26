@@ -4,23 +4,19 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.media.MediaPlayer;
-import android.media.Ringtone;
-import android.media.RingtoneManager;
-import android.os.Build;
+import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.SystemClock;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.ProgressBar;
@@ -30,6 +26,10 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -49,12 +49,18 @@ public class MainActivity extends AppCompatActivity {
     FloatingActionButton button_cancelCountdown;
     ProgressBar progressBar_chronometer;
     ProgressBar progressBar_decorator;
+    ProgressBar progressBar_outer;
+    Button button_setAlarm;
+    static Context ctx;
+
+
+
+
 
     TextClock tc;
     TimePicker tp;
     String alarmtime = "";
     String currenttime = "";
-    TextView tv;
 
 
 
@@ -68,9 +74,6 @@ public class MainActivity extends AppCompatActivity {
 
         tc = findViewById(R.id.tec);
         tp = findViewById(R.id.tip);
-        tc.setFormat24Hour("k:mm");
-        tc.setFormat12Hour(null);
-
 
         //region Tabs
         TabHost tabHost = (TabHost) findViewById(R.id.tabHost);
@@ -110,9 +113,17 @@ public class MainActivity extends AppCompatActivity {
         progressBar_chronometer.setMax(59);
         delta_t = 0;
         progressBar_decorator = findViewById(R.id.progressBar_decorator);
-        progressBar_decorator.setVisibility(View.INVISIBLE);
+        progressBar_decorator.setMax(29);
+        progressBar_outer = findViewById(R.id.progressBar_outer);
+        progressBar_outer.setMax(14);
 
+        if(AlarmsActivity.al_alarms == null){
+            AlarmsActivity.al_alarms = new ArrayList<Alarm>();
+        }
 
+        button_setAlarm = findViewById(R.id.button_setAlarm);
+        loadAlarms();
+        ctx = this;
 
 
 
@@ -144,13 +155,11 @@ public class MainActivity extends AppCompatActivity {
         //Click listener: Checking which menue item has been clicked
         switch (item.getItemId()){
             case R.id.settings:
-                Toast.makeText(this, "settings clicked", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, SettingsActivity.class);
                 startActivity(intent);
                 return true;
 
             case R.id.alarms:
-                Toast.makeText(this, "alarms clicked", Toast.LENGTH_SHORT).show();
                 Intent intent_alarms = new Intent(this, AlarmsActivity.class);
                 startActivity(intent_alarms);
                 return true;
@@ -161,15 +170,18 @@ public class MainActivity extends AppCompatActivity {
         //endregion Menue Navigators
     }
 
-    public void button_setAlarm_Clicked(View view) {
-        alarmtime = tp.getHour()+":"+tp.getMinute();
-        Toast.makeText(this, "Alarm gesetzt", Toast.LENGTH_LONG).show();
+    public void button_setAlarm_Clicked(View view) throws ParseException {
+        String h = (tp.getHour() < 10)  ? "0" + tp.getHour()  : "" + tp.getHour();
+        String m = (tp.getMinute() < 10)  ? "0" + tp.getMinute()  : "" + tp.getMinute();
+
+        AlarmsActivity.al_alarms.add(new Alarm((h+":"+m), R.drawable.baseline_alarm_24, false, true));
+        Toast.makeText(this, "Alarm  gesetzt", Toast.LENGTH_SHORT).show();
+        saveAlarms();
     }
 
 
     public void button_start_stop_Clicked(View view) {
-
-
+        //region Chronometer
         if(!chronometerRunning)
         {
             progressBar_decorator.setVisibility(View.VISIBLE);
@@ -180,6 +192,8 @@ public class MainActivity extends AppCompatActivity {
                 public void onChronometerTick(Chronometer chronometer) {
                     delta_t = SystemClock.elapsedRealtime() - chronometer.getBase();
                     progressBar_chronometer.setProgress((int) ((delta_t/1000)%60));
+                    progressBar_decorator.setProgress((int) ((delta_t/1000)%30));
+                    progressBar_outer.setProgress((int) ((delta_t/1000)%15));
                 }
             });
             chronometer.start();
@@ -194,8 +208,10 @@ public class MainActivity extends AppCompatActivity {
             delta_t = SystemClock.elapsedRealtime() - chronometer.getBase();
             tv_delta_t.setText(getResources().getString(R.string.text_delta_t) + "\n" + ((float) delta_t/1000) + "s");
             progressBar_chronometer.setProgress(0);
-            progressBar_decorator.setVisibility(View.INVISIBLE);
+            progressBar_decorator.setProgress(0);
+            progressBar_outer.setProgress(0);
         }
+        //endregion
     }
 
     public void loadSettings(){
@@ -255,4 +271,43 @@ public class MainActivity extends AppCompatActivity {
         countdownRunning = false;
     }
     //endregion
+
+    public void saveAlarms(){
+        SharedPreferences sharedPreferences = getSharedPreferences("Alarms", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear();
+        editor.commit();
+        editor.apply();
+
+        for (int i = 0; i < AlarmsActivity.al_alarms.size(); i++) {
+            editor.putString("title" + i, AlarmsActivity.al_alarms.get(i).title);
+            editor.putInt("symbol" + i, AlarmsActivity.al_alarms.get(i).symbol);
+            editor.putBoolean("atheneosAlarm" + i, AlarmsActivity.al_alarms.get(i).atheneosAlarm);
+            editor.putBoolean("active" + i, AlarmsActivity.al_alarms.get(i).active);
+        }
+        editor.apply();
+    }
+
+    public void loadAlarms(){
+        SharedPreferences sharedPreferences = getSharedPreferences("Alarms", Context.MODE_PRIVATE);
+        try{
+            int i = 0;
+            AlarmsActivity.al_alarms.clear();
+            while(true){
+                if (sharedPreferences.getString("title" + i, "-").equals("-")) return;
+
+                AlarmsActivity.al_alarms.add(
+                        new Alarm(
+                        sharedPreferences.getString("title" + i, "--:--"),
+                        sharedPreferences.getInt("symbol" + i, R.drawable.baseline_alarm_24),
+                        sharedPreferences.getBoolean("atheneosAlarm" + i, false),
+                        sharedPreferences.getBoolean("active" + i, false)));
+                i++;
+            }
+        }catch (Exception e) {
+            Toast.makeText(this, "EXCEPTION", Toast.LENGTH_SHORT);
+        }
+    }
+
+
 }
