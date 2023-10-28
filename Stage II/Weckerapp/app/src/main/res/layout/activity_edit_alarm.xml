@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeEditAlarms"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/atheneos_LightGrey"
+    tools:context=".EditAlarmActivity">
+
+
+    <TimePicker
+        android:id="@+id/tp_edit_alarm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:scaleX="1.5"
+        android:scaleY="1.5"
+        android:timePickerMode="spinner"
+        android:translationY="50dp"
+        android:numbersSelectorColor="@color/atheneos_yellow"/>
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:translationY="320dp"
+        app:srcCompat="@android:drawable/checkbox_off_background" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:translationY="420dp"
+        app:srcCompat="@android:drawable/checkbox_off_background" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="50dp"
+        android:translationY="320dp"
+        app:srcCompat="@android:drawable/checkbox_off_background" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="50dp"
+        android:translationY="420dp"
+        app:srcCompat="@android:drawable/checkbox_off_background" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="50dp"
+        android:translationY="320dp"
+        app:srcCompat="@android:drawable/checkbox_off_background" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="50dp"
+        android:translationY="420dp"
+        app:srcCompat="@android:drawable/checkbox_off_background" />
+
+    <Button
+        android:id="@+id/button_save_AlarmEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:height="70dp"
+        android:background="@color/atheneos_yellow"
+        android:onClick="button_saveEditAlarmClicked"
+        android:text="@string/text_button_saveSettings"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:translationY="550dp" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/button_delete_Alarm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:height="70dp"
+        android:background="@color/atheneos_yellow"
+        android:onClick="button_deleteAlarmClicked"
+        android:scaleX="1.1"
+        android:scaleY="1.1"
+        android:textSize="16sp"
+        android:translationY="635dp"
+        app:maxImageSize="50dp"
+        app:srcCompat="@drawable/baseline_delete_forever_96" />
+
+
+</RelativeLayout>

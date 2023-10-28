@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Atheneos</string>
+    <string name="text_button_setAlarm">Alarm setzen</string>
+    <string name="text_switch_24h">24h Format</string>
+    <string name="text_settings_title">Einstellungen</string>
+    <string name="text_alarms_title">Alarme</string>
+    <string name="text_settings_24h">24h Format</string>
+    <string name="text_button_start">Start</string>
+    <string name="text_button_stop">Stopp</string>
+    <string name="text_delta_t">Verstrichene Zeit: </string>
+    <string name="title_activity_alarms">AlarmsActivity</string>
+    <string name="text_button_saveSettings">Speichern</string>
+    <string name="text_button_startCountdown">Timer Starten</string>
+    <string name="text_remainingSeconds">Verbleibende Sekunden: </string>
+    <string name="title_activity_edit_alarm">Alarm bearbeiten</string>
+    <string name="text_button_deleteAlarm">Alarm entfernen</string>
+    <string name="title_activity_popup_task_aktivity">PopupTaskAktivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
+
+</resources>
