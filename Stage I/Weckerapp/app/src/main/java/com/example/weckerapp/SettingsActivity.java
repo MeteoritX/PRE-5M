@@ -1,6 +1,7 @@
 package com.example.weckerapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -26,6 +27,7 @@ public class SettingsActivity extends AppCompatActivity {
         setSupportActionBar(toolbar_settings);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeAsUpIndicator(R.drawable.baseline_arrow_back_);
         actionBar.setTitle(getResources().getString(R.string.text_settings_title));
 
         switch_24h = findViewById(R.id.switch_24h);
@@ -48,5 +50,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     public void button_saveSettings_Clicked(View view) {
         saveCurrenSettings();
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 }

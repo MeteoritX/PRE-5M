@@ -9,6 +9,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Weckerapp">
         <activity
+            android:name=".PopupTaskAktivity"
+            android:exported="false"
+            android:label="@string/title_activity_popup_task_aktivity" />
+        <activity
+            android:name=".EditAlarmActivity"
+            android:exported="false"
+            android:label="@string/title_activity_edit_alarm"
+            android:parentActivityName=".AlarmsActivity" />
+        <activity
             android:name=".AlarmsActivity"
             android:exported="false"
             android:label="@string/title_activity_alarms"

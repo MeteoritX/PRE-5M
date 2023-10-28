@@ -26,7 +26,10 @@
         android:layout_height="60dp"
         android:layout_marginLeft="250dp"
         android:scaleX="1.5"
-        android:scaleY="1.5"/>
+        android:scaleY="1.5"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        />
 
 </RelativeLayout>
 

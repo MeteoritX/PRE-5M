@@ -36,7 +36,8 @@ public class AlarmAdapterForListView extends ArrayAdapter<Alarm> {
         Switch sw_alarmON = convertView.findViewById(R.id.sw_alarmON);
 
         iv_alarm.setImageResource(getItem(position).getSymbol());
-        tv_alarm.setText(getItem(position).getTitle());
+        getItem(position).refreshDisplayedTitle();
+        tv_alarm.setText(getItem(position).getDisplayed_title());
         sw_alarmON.setChecked(getItem(position).active);
 
         sw_alarmON.setOnClickListener(new View.OnClickListener() {

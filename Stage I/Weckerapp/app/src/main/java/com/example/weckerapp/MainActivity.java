@@ -12,6 +12,7 @@ import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.text.format.Time;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -29,6 +30,7 @@ import android.widget.Toast;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -52,15 +54,13 @@ public class MainActivity extends AppCompatActivity {
     ProgressBar progressBar_outer;
     Button button_setAlarm;
     static Context ctx;
-
-
-
+    static boolean audioActivated;
+    static Timer timer;
 
 
     TextClock tc;
     TimePicker tp;
-    String alarmtime = "";
-    String currenttime = "";
+
 
 
 
@@ -116,6 +116,7 @@ public class MainActivity extends AppCompatActivity {
         progressBar_decorator.setMax(29);
         progressBar_outer = findViewById(R.id.progressBar_outer);
         progressBar_outer.setMax(14);
+        audioActivated = false;
 
         if(AlarmsActivity.al_alarms == null){
             AlarmsActivity.al_alarms = new ArrayList<Alarm>();
@@ -125,20 +126,31 @@ public class MainActivity extends AppCompatActivity {
         loadAlarms();
         ctx = this;
 
+        //Cyclic alarm check
+        if(timer == null){
+            timer = new Timer();
+            timer.scheduleAtFixedRate(new TimerTask() {
+                @Override
+                public void run() {
+                    for (Alarm a : AlarmsActivity.al_alarms) {
+                        Date date = Calendar.getInstance().getTime();
+                        int h = date.getHours();
+                        int m = date.getMinutes();
+                        String[] split_title = a.title.split(":");
+                        if(Integer.parseInt(split_title[0]) == h && Integer.parseInt(split_title[1]) == m && a.active && !audioActivated ){
+                            MediaPlayer mediaPlayer = MediaPlayer.create(getApplicationContext(), Settings.System.DEFAULT_ALARM_ALERT_URI);
+                            mediaPlayer.start();
+                            audioActivated = true;
 
-
-        Timer t = new Timer();
-        t.scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
-                if(!alarmtime.equals("")){
-                    if(tc.getText().toString().equals(alarmtime)){
-                        MediaPlayer mediaPlayer = MediaPlayer.create(getApplicationContext(), Settings.System.DEFAULT_ALARM_ALERT_URI);
-                        mediaPlayer.start();
+                            //Redirect to Popup-Task
+                            Intent intent = new Intent(ctx, PopupTaskAktivity.class);
+                            startActivity(intent);
+                        }
                     }
                 }
-            }
-        },0,1000);
+            },0,14000);
+        }
+
     }
 
     @Override
