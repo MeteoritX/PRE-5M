@@ -26,14 +26,65 @@
         android:text="@string/text_button_saveSettings"
         android:textSize="16sp"
         android:textStyle="bold"
-        android:translationY="525dp" />
+        android:translationY="600dp" />
+
+    <SeekBar
+        android:id="@+id/seekBar_difficulty"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:max="10"
+        android:min="1"
+        android:onClick="seekBar_difficultyClicked"
+        android:scaleX="2"
+        android:scaleY="2"
+        android:translationY="100dp" />
+
+    <SeekBar
+        android:id="@+id/seekBar_number_of_toSolves"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:max="10"
+        android:min="1"
+        android:onClick="seekBar_numberClicked"
+        android:scaleX="2"
+        android:scaleY="2"
+        android:translationY="250dp" />
 
     <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
+        android:id="@+id/tv_difficulty"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:text="Test"
-        android:translationY="200dp" />
+        android:text="@string/text_difficulty"
+        android:textSize="20sp"
+        android:translationY="100dp" />
+
+    <TextView
+        android:id="@+id/tv_number_of_toSolves"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/text_number_of_toSolves"
+        android:textSize="20sp"
+        android:translationY="250dp" />
+
+    <TextView
+        android:id="@+id/tv_example"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/text_example"
+        android:textAlignment="center"
+        android:textSize="34sp"
+        android:translationY="400dp" />
+
+    <TextView
+        android:id="@+id/tv_example_structure"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="---"
+        android:textAlignment="center"
+        android:textSize="34sp"
+        android:translationY="450dp" />
+
 
 </RelativeLayout>

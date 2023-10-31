@@ -3,6 +3,10 @@ package com.example.weckerapp;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.example.weckerapp.alarmTasks.AlarmTask;
+
+import java.util.ArrayList;
+
 public class Alarm {
     String title;
     int symbol;
@@ -10,7 +14,7 @@ public class Alarm {
     boolean active;
     String displayed_title;
 
-    //Activities (Stage II)
+    ArrayList<AlarmTask> al_AlarmTasks;
 
     public Alarm() {
     }
@@ -21,6 +25,10 @@ public class Alarm {
         this.atheneosAlarm = atheneosAlarm;
         this.active = active;
         refreshDisplayedTitle();
+        al_AlarmTasks = new ArrayList<>(6); //Capacity != Size ... !!!
+        for (int i = 0; i < 6; i++) {
+            al_AlarmTasks.add(null);
+        }
     }
 
     public String getTitle() {
@@ -73,5 +81,13 @@ public class Alarm {
 
     public String getDisplayed_title() {
         return displayed_title;
+    }
+
+    public ArrayList<AlarmTask> getAl_AlarmTasks() {
+        return al_AlarmTasks;
+    }
+
+    public void setAl_AlarmTasks(ArrayList<AlarmTask> al_AlarmTasks) {
+        this.al_AlarmTasks = al_AlarmTasks;
     }
 }

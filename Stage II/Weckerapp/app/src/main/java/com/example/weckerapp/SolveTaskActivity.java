@@ -3,6 +3,8 @@ package com.example.weckerapp;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.example.weckerapp.alarmTasks.AlarmTask;
+
 import java.util.ArrayList;
 
 public class SolveTaskActivity extends AppCompatActivity {

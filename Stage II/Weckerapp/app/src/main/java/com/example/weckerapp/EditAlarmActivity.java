@@ -65,28 +65,35 @@ public class EditAlarmActivity extends AppCompatActivity {
             case R.id.iv_task1:
                 intent_addTask.putExtra("task_slot", R.id.iv_task1);
                 intent_addTask.putExtra("task_slot_bg", R.id.iv_task1_background);
+                intent_addTask.putExtra("task_index", 1);
                 break;
             case R.id.iv_task2:
                 intent_addTask.putExtra("task_slot", R.id.iv_task2);
                 intent_addTask.putExtra("task_slot_bg", R.id.iv_task2_background);
+                intent_addTask.putExtra("task_index", 2);
                 break;
             case R.id.iv_task3:
                 intent_addTask.putExtra("task_slot", R.id.iv_task3);
                 intent_addTask.putExtra("task_slot_bg", R.id.iv_task3_background);
+                intent_addTask.putExtra("task_index", 3);
                 break;
             case R.id.iv_task4:
                 intent_addTask.putExtra("task_slot", R.id.iv_task4);
                 intent_addTask.putExtra("task_slot_bg", R.id.iv_task4_background);
+                intent_addTask.putExtra("task_index", 4);
                 break;
             case R.id.iv_task5:
                 intent_addTask.putExtra("task_slot", R.id.iv_task5);
                 intent_addTask.putExtra("task_slot_bg", R.id.iv_task5_background);
+                intent_addTask.putExtra("task_index", 5);
                 break;
             case R.id.iv_task6:
                 intent_addTask.putExtra("task_slot", R.id.iv_task6);
                 intent_addTask.putExtra("task_slot_bg", R.id.iv_task6_background);
+                intent_addTask.putExtra("task_index", 6);
                 break;
         }
+        intent_addTask.putExtra("alarm_index", alarmIndex);
         startActivity(intent_addTask);
     }
 }

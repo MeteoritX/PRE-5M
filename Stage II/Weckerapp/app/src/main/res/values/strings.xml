@@ -23,5 +23,9 @@
     <string name="title_activity_doms">Domäne</string>
     <string name="title_activity_choose_module">Modul</string>
     <string name="title_activity_choose_to_solves">Aufgaben</string>
+    <string name="text_difficulty">Schwierigkeit</string>
+    <string name="text_number_of_toSolves">Aufgabenanzahl</string>
+    <string name="text_example">Beispiel:</string>
+
 
 </resources>

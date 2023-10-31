@@ -18,6 +18,8 @@ public class ChooseModuleActivity extends AppCompatActivity {
     static Context context;
     static Intent intent_from_module;
 
+    static Bundle extras; //Nach dem Speichern auf NULL setzen!
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,7 +27,12 @@ public class ChooseModuleActivity extends AppCompatActivity {
         setSupportActionBar(findViewById(R.id.toolbar_mod));
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.baseline_arrow_back_);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        intent_from_module = getIntent();
+
+        if(extras == null){
+            intent_from_module = getIntent();
+            extras = intent_from_module.getExtras();
+        }
+
         context = this;
 
         if(al_modules == null){
@@ -42,8 +49,8 @@ public class ChooseModuleActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(context, ChooseToSolvesActivity.class);
-                intent.putExtras(intent_from_module.getExtras());
-                intent.putExtra("module_index", i);
+                intent.putExtras(extras);
+                intent.putExtra("module_indexer", al_modules.get(i));
                 startActivity(intent);
             }
         });

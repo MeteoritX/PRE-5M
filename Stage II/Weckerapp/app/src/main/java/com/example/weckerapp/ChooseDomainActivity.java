@@ -7,6 +7,7 @@ import android.view.View;
 
 public class ChooseDomainActivity extends AppCompatActivity {
 
+   static Bundle extras;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,12 +17,16 @@ public class ChooseDomainActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(getResources().getString(R.string.title_activity_doms));
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.baseline_arrow_back_);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        if(extras == null){
+           extras = getIntent().getExtras();
+        }
     }
 
 
     public void domain_mathClicked(View view) {
        Intent intent = new Intent(this, ChooseModuleActivity.class);
-       intent.putExtras(getIntent().getExtras());
+       intent.putExtras(extras);
        startActivity(intent);
     }
 

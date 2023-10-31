@@ -1,4 +1,4 @@
-package com.example.weckerapp;
+package com.example.weckerapp.alarmTasks;
 
 //This resembles a ToSolve (einzelne Aufgabe)
 public abstract class ToSolve {
