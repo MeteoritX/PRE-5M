@@ -57,6 +57,8 @@ public class MainActivity extends AppCompatActivity {
     static boolean audioActivated;
     static Timer timer;
 
+    static MediaPlayer mediaPlayer;
+
 
     TextClock tc;
     TimePicker tp;
@@ -138,17 +140,18 @@ public class MainActivity extends AppCompatActivity {
                         int m = date.getMinutes();
                         String[] split_title = a.title.split(":");
                         if(Integer.parseInt(split_title[0]) == h && Integer.parseInt(split_title[1]) == m && a.active && !audioActivated ){
-                            MediaPlayer mediaPlayer = MediaPlayer.create(getApplicationContext(), Settings.System.DEFAULT_ALARM_ALERT_URI);
+                            mediaPlayer = MediaPlayer.create(getApplicationContext(), Settings.System.DEFAULT_ALARM_ALERT_URI);
                             mediaPlayer.start();
                             audioActivated = true;
 
                             //Redirect to Popup-Task
                             Intent intent = new Intent(ctx, PopupTaskAktivity.class);
+                            intent.putExtra("alarm_index", AlarmsActivity.al_alarms.indexOf((Alarm) a));
                             startActivity(intent);
                         }
                     }
                 }
-            },0,14000);
+            },0,16000);
         }
 
     }

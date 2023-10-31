@@ -14,61 +14,141 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:numbersSelectorColor="@color/atheneos_yellow"
         android:scaleX="1.5"
         android:scaleY="1.5"
         android:timePickerMode="spinner"
-        android:translationY="50dp"
-        android:numbersSelectorColor="@color/atheneos_yellow"/>
+        android:translationY="50dp" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/iv_task2_background"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_centerHorizontal="true"
+        android:tint="@color/atheneos_DarkGrey"
         android:translationY="320dp"
         app:srcCompat="@android:drawable/checkbox_off_background" />
 
     <ImageView
-        android:id="@+id/imageView7"
+        android:id="@+id/iv_task2"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_centerHorizontal="true"
+        android:onClick="iv_addTaskClicked"
+        android:scaleX="0.8"
+        android:scaleY="0.8"
+        android:tint="@color/atheneos_LightGrey"
+        android:translationY="320dp"
+        app:srcCompat="@drawable/baseline_alarm_add_24" />
+
+    <ImageView
+        android:id="@+id/iv_task5_background"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:tint="@color/atheneos_DarkGrey"
         android:translationY="420dp"
         app:srcCompat="@android:drawable/checkbox_off_background" />
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/iv_task5"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:onClick="iv_addTaskClicked"
+        android:scaleX="0.8"
+        android:scaleY="0.8"
+        android:tint="@color/atheneos_LightGrey"
+        android:translationY="420dp"
+        app:srcCompat="@drawable/baseline_alarm_add_24" />
+
+    <ImageView
+        android:id="@+id/iv_task1_background"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginLeft="50dp"
+        android:tint="@color/atheneos_DarkGrey"
         android:translationY="320dp"
         app:srcCompat="@android:drawable/checkbox_off_background" />
 
     <ImageView
-        android:id="@+id/imageView6"
+        android:id="@+id/iv_task1"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginLeft="50dp"
+        android:onClick="iv_addTaskClicked"
+        android:scaleX="0.8"
+        android:scaleY="0.8"
+        android:tint="@color/atheneos_LightGrey"
+        android:translationY="320dp"
+        app:srcCompat="@drawable/baseline_alarm_add_24" />
+
+    <ImageView
+        android:id="@+id/iv_task4_background"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="50dp"
+        android:tint="@color/atheneos_DarkGrey"
         android:translationY="420dp"
         app:srcCompat="@android:drawable/checkbox_off_background" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/iv_task4"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="50dp"
+        android:onClick="iv_addTaskClicked"
+        android:scaleX="0.8"
+        android:scaleY="0.8"
+        android:tint="@color/atheneos_LightGrey"
+        android:translationY="420dp"
+        app:srcCompat="@drawable/baseline_alarm_add_24" />
+
+    <ImageView
+        android:id="@+id/iv_task3_background"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_alignParentRight="true"
         android:layout_marginRight="50dp"
+        android:tint="@color/atheneos_DarkGrey"
         android:translationY="320dp"
         app:srcCompat="@android:drawable/checkbox_off_background" />
 
     <ImageView
-        android:id="@+id/imageView8"
+        android:id="@+id/iv_task3"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_alignParentRight="true"
         android:layout_marginRight="50dp"
+        android:onClick="iv_addTaskClicked"
+        android:scaleX="0.8"
+        android:scaleY="0.8"
+        android:tint="@color/atheneos_LightGrey"
+        android:translationY="320dp"
+        app:srcCompat="@drawable/baseline_alarm_add_24" />
+
+    <ImageView
+        android:id="@+id/iv_task6_background"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="50dp"
+        android:tint="@color/atheneos_DarkGrey"
         android:translationY="420dp"
         app:srcCompat="@android:drawable/checkbox_off_background" />
+
+    <ImageView
+        android:id="@+id/iv_task6"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="50dp"
+        android:onClick="iv_addTaskClicked"
+        android:scaleX="0.8"
+        android:scaleY="0.8"
+        android:tint="@color/atheneos_LightGrey"
+        android:translationY="420dp"
+        app:srcCompat="@drawable/baseline_alarm_add_24" />
 
     <Button
         android:id="@+id/button_save_AlarmEdit"

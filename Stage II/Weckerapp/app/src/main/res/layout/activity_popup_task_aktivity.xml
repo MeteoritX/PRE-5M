@@ -4,14 +4,31 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="?attr/actionBarSize">
+    android:paddingTop="?attr/actionBarSize"
+    android:background="@color/atheneos_LightGrey">
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
         android:scaleX="3"
         android:scaleY="3"
-        android:text="Pop-up Task" />
+        android:text="Pop-up Task"
+        android:textStyle="bold"
+        android:translationY="250dp" />
+
+
+    <Button
+        android:id="@+id/button_deactivateAlarm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:height="70dp"
+        android:background="@color/atheneos_yellow"
+        android:onClick="button_deactivateAlarmClicked"
+        android:text="@string/button_text_deactivateAlarm"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:translationY="525dp" />
+
 </RelativeLayout>

@@ -15,9 +15,13 @@
     <string name="title_activity_edit_alarm">Alarm bearbeiten</string>
     <string name="text_button_deleteAlarm">Alarm entfernen</string>
     <string name="title_activity_popup_task_aktivity">PopupTaskAktivity</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
-
+    <string name="button_text_deactivateAlarm">Abschalten</string>
+    <string name="title_activity_solve_task">Aufgabenstellung</string>//Notiz:
+    <string name="domain_mathematics">Mathematik</string>
+    <string name="domain_medicine">Medizin</string>
+    <string name="domain_linguistics">Linguistik</string>
+    <string name="title_activity_doms">Domäne</string>
+    <string name="title_activity_choose_module">Modul</string>
+    <string name="title_activity_choose_to_solves">Aufgaben</string>
 
 </resources>

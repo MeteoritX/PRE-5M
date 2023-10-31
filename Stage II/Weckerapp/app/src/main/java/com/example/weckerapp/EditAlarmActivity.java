@@ -58,4 +58,35 @@ public class EditAlarmActivity extends AppCompatActivity {
         boolean switchState = sharedPreferences.getBoolean("switch_24h", false);
         tp_edit_alarm.setIs24HourView(switchState);
     }
+
+    public void iv_addTaskClicked(View view) {
+        Intent intent_addTask = new Intent(this, ChooseDomainActivity.class);
+        switch(view.getId()){
+            case R.id.iv_task1:
+                intent_addTask.putExtra("task_slot", R.id.iv_task1);
+                intent_addTask.putExtra("task_slot_bg", R.id.iv_task1_background);
+                break;
+            case R.id.iv_task2:
+                intent_addTask.putExtra("task_slot", R.id.iv_task2);
+                intent_addTask.putExtra("task_slot_bg", R.id.iv_task2_background);
+                break;
+            case R.id.iv_task3:
+                intent_addTask.putExtra("task_slot", R.id.iv_task3);
+                intent_addTask.putExtra("task_slot_bg", R.id.iv_task3_background);
+                break;
+            case R.id.iv_task4:
+                intent_addTask.putExtra("task_slot", R.id.iv_task4);
+                intent_addTask.putExtra("task_slot_bg", R.id.iv_task4_background);
+                break;
+            case R.id.iv_task5:
+                intent_addTask.putExtra("task_slot", R.id.iv_task5);
+                intent_addTask.putExtra("task_slot_bg", R.id.iv_task5_background);
+                break;
+            case R.id.iv_task6:
+                intent_addTask.putExtra("task_slot", R.id.iv_task6);
+                intent_addTask.putExtra("task_slot_bg", R.id.iv_task6_background);
+                break;
+        }
+        startActivity(intent_addTask);
+    }
 }

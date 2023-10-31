@@ -9,6 +9,29 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Weckerapp">
         <activity
+            android:name=".ChooseToSolvesActivity"
+            android:exported="false"
+            android:label="@string/title_activity_choose_to_solves"
+            android:theme="@style/Theme.Weckerapp.NoActionBar"
+            android:parentActivityName=".ChooseModuleActivity"/>
+        <activity
+            android:name=".ChooseModuleActivity"
+            android:exported="false"
+            android:label="@string/title_activity_choose_module"
+            android:parentActivityName=".ChooseDomainActivity"
+            android:theme="@style/Theme.Weckerapp.NoActionBar" />
+        <activity
+            android:name=".ChooseDomainActivity"
+            android:exported="false"
+            android:label="@string/title_activity_doms"
+            android:parentActivityName=".EditAlarmActivity"
+            android:theme="@style/Theme.Weckerapp.NoActionBar" />
+        <activity
+            android:name=".SolveTaskActivity"
+            android:exported="false"
+            android:label="@string/title_activity_solve_task"
+            android:theme="@style/Theme.Weckerapp.NoActionBar" />
+        <activity
             android:name=".PopupTaskAktivity"
             android:exported="false"
             android:label="@string/title_activity_popup_task_aktivity" />
