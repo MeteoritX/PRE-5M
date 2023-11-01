@@ -8,9 +8,7 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import com.example.weckerapp.alarmTasks.MathTask;
-
-import org.w3c.dom.Text;
+import com.example.weckerapp.alarmTasks.AlarmTask;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -49,11 +47,15 @@ static Bundle extras;
         sb_difficulty.setProgress(1);
         sb_number.setProgress(1);
 
+
+        String module_diff = extras.getString("module_indexer", ""); //Module differentiator
+
         if(t_active == false)t.schedule(new TimerTask() {
             @Override
             public void run() {
                 seekBar_difficultyClicked(sb_difficulty);
                 seekBar_numberClicked(sb_number);
+
                 switch (sb_difficulty.getProgress()){
                     case 1:
                         tv_example.setText("9 + 3 =");
@@ -98,16 +100,15 @@ static Bundle extras;
         if (alarm_index != -1) {
             Alarm a = AlarmsActivity.al_alarms.get(alarm_index);
             a.setAtheneosAlarm(true);
+            a.setSymbol(R.drawable.atheneos);
             t.cancel();
             t.purge();
 
+
             int task_index = extras.getInt("task_index");
-            MathTask mt = new MathTask(sb_number.getProgress(), sb_difficulty.getProgress());
-            a.al_AlarmTasks.add(task_index, mt);
-            int slot_res_number = extras.getInt("task_slot");
-            View v = findViewById(slot_res_number);  //v = null id is not there ?! -> Null-Check und manuell über die id setzen, I guess
-            ((ImageView) v).setImageResource(R.drawable.baseline_calculate_24); //Null-Ref
-            ((ImageView) findViewById(extras.getInt("task_slot_bg"))).setBackgroundColor(getResources().getColor(R.color.atheneos_yellow));
+            AlarmTask at = new AlarmTask(sb_number.getProgress(), sb_difficulty.getProgress(), extras.getInt("dom", 1), extras.getString("module_indexer", ""));
+            a.al_AlarmTasks.set(task_index, at);
+
 
             extras = null;
             ChooseDomainActivity.extras = null;

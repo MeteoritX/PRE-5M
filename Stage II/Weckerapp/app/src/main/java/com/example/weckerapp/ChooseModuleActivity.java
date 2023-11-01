@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class ChooseModuleActivity extends AppCompatActivity {
 
     ListView lv_modules;
-    ArrayList<String> al_modules; //String 4 testing
+    static ArrayList<String> al_modules; //String 4 testing
     static Context context;
     static Intent intent_from_module;
 
@@ -42,9 +42,12 @@ public class ChooseModuleActivity extends AppCompatActivity {
         lv_modules.setAdapter(new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1, al_modules));
 
         //Stage II only
-        al_modules.add("Arithmetik");
-        al_modules.add("Algebra");
-        al_modules.add("Geometrie");
+        if(al_modules.size() == 0){
+            al_modules.add(getResources().getString(R.string.module_arithmetics));
+            al_modules.add(getResources().getString(R.string.module_algebra));
+            al_modules.add(getResources().getString(R.string.module_geometry));
+        }
+
         lv_modules.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {

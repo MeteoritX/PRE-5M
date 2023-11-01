@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.example.weckerapp.alarmTasks.AlarmTask;
+import com.example.weckerapp.alarmTasks.Domain;
 
 import java.util.ArrayList;
 
@@ -14,7 +15,8 @@ public class Alarm {
     boolean active;
     String displayed_title;
 
-    ArrayList<AlarmTask> al_AlarmTasks;
+     ArrayList<AlarmTask> al_AlarmTasks;
+
 
     public Alarm() {
     }

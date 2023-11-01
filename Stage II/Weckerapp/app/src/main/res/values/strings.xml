@@ -26,6 +26,10 @@
     <string name="text_difficulty">Schwierigkeit</string>
     <string name="text_number_of_toSolves">Aufgabenanzahl</string>
     <string name="text_example">Beispiel:</string>
+    <string name="module_arithmetics">Arithmetik</string>
+    <string name="module_algebra">Algebra</string>
+    <string name="module_geometry">Geometrie</string>
+    }
 
 
 </resources>

@@ -27,6 +27,8 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.example.weckerapp.alarmTasks.AlarmTask;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -299,6 +301,16 @@ public class MainActivity extends AppCompatActivity {
             editor.putInt("symbol" + i, AlarmsActivity.al_alarms.get(i).symbol);
             editor.putBoolean("atheneosAlarm" + i, AlarmsActivity.al_alarms.get(i).atheneosAlarm);
             editor.putBoolean("active" + i, AlarmsActivity.al_alarms.get(i).active);
+
+            //Atheneos expansion
+            for (int j = 0; j < AlarmsActivity.al_alarms.get(i).al_AlarmTasks.size(); j++) {
+                if(AlarmsActivity.al_alarms.get(i).al_AlarmTasks.get(j) == null) continue;
+                editor.putInt(j + "difficulty" + i, AlarmsActivity.al_alarms.get(i).al_AlarmTasks.get(j).getDifficulty());
+                editor.putInt(j + "number" + i, AlarmsActivity.al_alarms.get(i).al_AlarmTasks.get(j).getNumberOfToSolves());
+                editor.putInt(j + "dom" + i, AlarmsActivity.al_alarms.get(i).al_AlarmTasks.get(j).getDom());
+                editor.putString(j + "module" + i, AlarmsActivity.al_alarms.get(i).al_AlarmTasks.get(j).getModule());
+            }
+
         }
         editor.apply();
     }
@@ -311,12 +323,27 @@ public class MainActivity extends AppCompatActivity {
             while(true){
                 if (sharedPreferences.getString("title" + i, "-").equals("-")) return;
 
-                AlarmsActivity.al_alarms.add(
-                        new Alarm(
+                Alarm a =  new Alarm(
                         sharedPreferences.getString("title" + i, "--:--"),
                         sharedPreferences.getInt("symbol" + i, R.drawable.baseline_alarm_24),
                         sharedPreferences.getBoolean("atheneosAlarm" + i, false),
-                        sharedPreferences.getBoolean("active" + i, false)));
+                        sharedPreferences.getBoolean("active" + i, false));
+
+                //Atheneos expansion
+                for (int j = 0; j < 6; j++) {
+
+                   int difficulty = sharedPreferences.getInt(j + "difficulty" + i, 0);
+                   int number = sharedPreferences.getInt(j + "number" + i, 0);
+                   int dom = sharedPreferences.getInt(j + "dom" + i, 0);
+                   String module = sharedPreferences.getString(j + "module" + i, "");
+
+                   if(difficulty != 0){
+                       a.al_AlarmTasks.set(j, new AlarmTask(number, difficulty, dom, module));
+                   }
+                }
+
+
+                AlarmsActivity.al_alarms.add(a);
                 i++;
             }
         }catch (Exception e) {

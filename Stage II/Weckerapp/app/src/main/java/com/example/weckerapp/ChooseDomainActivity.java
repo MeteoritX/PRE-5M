@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.example.weckerapp.alarmTasks.Domain;
+
 public class ChooseDomainActivity extends AppCompatActivity {
 
    static Bundle extras;
@@ -27,14 +29,17 @@ public class ChooseDomainActivity extends AppCompatActivity {
     public void domain_mathClicked(View view) {
        Intent intent = new Intent(this, ChooseModuleActivity.class);
        intent.putExtras(extras);
+       intent.putExtra("dom", Domain.DOM_MATHEMATICS.ordinal());
        startActivity(intent);
     }
 
     public void domain_medClicked(View view) {
         //Stage IV
+        //Dom Enum
     }
 
     public void domain_lingClicked(View view) {
         //Stage IV
+        //Dom Enum
     }
 }
