@@ -29,10 +29,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scaleX="1.5"
-        android:text="---"
+        android:text="100 + 100 + 100 ="
         android:textAlignment="center"
-        android:textSize="34sp"
-        android:translationY="140dp" />
+        android:textSize="25dp"
+        android:translationY="150dp" />
 
     <EditText
         android:id="@+id/et_input"
@@ -41,12 +41,12 @@
         android:layout_centerHorizontal="true"
         android:ems="10"
         android:inputType="text"
-        android:scaleX="1.5"
-        android:scaleY="1.5"
-        android:text="xxx"
+        android:scaleX="1.2"
+        android:scaleY="1.2"
         android:textAlignment="center"
         android:textColorHighlight="@color/atheneos_yellow"
-        android:translationY="200dp" />
+        android:textSize="20sp"
+        android:translationY="220dp" />
 
     <Button
         android:id="@+id/button_check"
@@ -69,5 +69,14 @@
         android:translationX="25dp"
         android:translationY="80dp"
         app:srcCompat="@drawable/baseline_music_off_24" />
+
+    <TextView
+        android:id="@+id/tv_total_finished"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="0/0"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:translationY="90dp" />
 
 </RelativeLayout>

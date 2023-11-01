@@ -8,7 +8,7 @@ public class AlarmTask {
     int dom;
     String module; //e.g. "Arithmetics"
 
-    int length;
+    public int length;
 
     public AlarmTask() {
     }
