@@ -8,6 +8,8 @@ public class AlarmTask {
     int dom;
     String module; //e.g. "Arithmetics"
 
+    int length;
+
     public AlarmTask() {
     }
 
@@ -16,8 +18,7 @@ public class AlarmTask {
         this.difficulty = difficulty;
         this.dom = dom;
         this.module = module;
-
-        //reconstruct from attributes/fields
+        this.length = 60;
     }
 
     public boolean hasBeenCompleted(){

@@ -40,6 +40,7 @@ public class PopupTaskAktivity extends AppCompatActivity {
             MainActivity.audioActivated = false;
             intent = new Intent(this, MainActivity.class);
         }
+        intent.putExtra("alarm_index", index_of_alarm);
         startActivity(intent);
     }
 

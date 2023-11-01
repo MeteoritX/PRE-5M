@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SolveTaskActivity">
+    tools:context=".SolveTaskActivity"
+    android:background="@color/atheneos_LightGrey">
 
 
     <android.support.v7.widget.Toolbar
@@ -14,4 +15,59 @@
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme" />
+
+    <ProgressBar
+        android:id="@+id/progressBar_solveTask"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:max="600"
+        android:translationY="60dp" />
+
+    <TextView
+        android:id="@+id/tv_toSolve"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleX="1.5"
+        android:text="---"
+        android:textAlignment="center"
+        android:textSize="34sp"
+        android:translationY="140dp" />
+
+    <EditText
+        android:id="@+id/et_input"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:inputType="text"
+        android:scaleX="1.5"
+        android:scaleY="1.5"
+        android:text="xxx"
+        android:textAlignment="center"
+        android:textColorHighlight="@color/atheneos_yellow"
+        android:translationY="200dp" />
+
+    <Button
+        android:id="@+id/button_check"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:height="70dp"
+        android:background="@color/atheneos_yellow"
+        android:onClick="button_checkClicked"
+        android:text="Check"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:translationY="525dp" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/button_mute"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:onClick="button_muteClicked"
+        android:translationX="25dp"
+        android:translationY="80dp"
+        app:srcCompat="@drawable/baseline_music_off_24" />
+
 </RelativeLayout>

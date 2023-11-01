@@ -14,7 +14,7 @@
     <string name="text_remainingSeconds">Verbleibende Sekunden: </string>
     <string name="title_activity_edit_alarm">Alarm bearbeiten</string>
     <string name="text_button_deleteAlarm">Alarm entfernen</string>
-    <string name="title_activity_popup_task_aktivity">PopupTaskAktivity</string>
+    <string name="title_activity_popup_task_aktivity">Alarm</string>
     <string name="button_text_deactivateAlarm">Abschalten</string>
     <string name="title_activity_solve_task">Aufgabenstellung</string>//Notiz:
     <string name="domain_mathematics">Mathematik</string>
