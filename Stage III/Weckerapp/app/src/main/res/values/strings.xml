@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">Atheneos</string>
+    <string name="text_button_setAlarm">Alarm setzen</string>
+    <string name="text_switch_24h">24h Format</string>
+    <string name="text_settings_title">Einstellungen</string>
+    <string name="text_alarms_title">Alarme</string>
+    <string name="text_settings_24h">24h Format</string>
+    <string name="text_button_start">Start</string>
+    <string name="text_button_stop">Stopp</string>
+    <string name="text_delta_t">Verstrichene Zeit: </string>
+    <string name="title_activity_alarms">AlarmsActivity</string>
+    <string name="text_button_saveSettings">Speichern</string>
+    <string name="text_button_startCountdown">Timer Starten</string>
+    <string name="text_remainingSeconds">Verbleibende Sekunden: </string>
+    <string name="title_activity_edit_alarm">Alarm bearbeiten</string>
+    <string name="text_button_deleteAlarm">Alarm entfernen</string>
+    <string name="title_activity_popup_task_aktivity">Alarm</string>
+    <string name="button_text_deactivateAlarm">Abschalten</string>
+    <string name="title_activity_solve_task">Aufgabenstellung</string>//Notiz:
+    <string name="domain_mathematics">Mathematik</string>
+    <string name="domain_medicine">Medizin</string>
+    <string name="domain_linguistics">Linguistik</string>
+    <string name="title_activity_doms">Domäne</string>
+    <string name="title_activity_choose_module">Modul</string>
+    <string name="title_activity_choose_to_solves">Aufgaben</string>
+    <string name="text_difficulty">Schwierigkeit</string>
+    <string name="text_number_of_toSolves">Aufgabenanzahl</string>
+    <string name="text_example">Beispiel:</string>
+    <string name="module_arithmetics">Arithmetik</string>
+    <string name="module_algebra">Algebra</string>
+    <string name="module_geometry">Geometrie</string>
+    }
+
+
+</resources>

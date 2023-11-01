@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/atheneos"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/atheneos"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Weckerapp">
+        <activity
+            android:name=".ChooseToSolvesActivity"
+            android:exported="false"
+            android:label="@string/title_activity_choose_to_solves"
+            android:theme="@style/Theme.Weckerapp.NoActionBar"
+            android:parentActivityName=".ChooseModuleActivity"/>
+        <activity
+            android:name=".ChooseModuleActivity"
+            android:exported="false"
+            android:label="@string/title_activity_choose_module"
+            android:parentActivityName=".ChooseDomainActivity"
+            android:theme="@style/Theme.Weckerapp.NoActionBar" />
+        <activity
+            android:name=".ChooseDomainActivity"
+            android:exported="false"
+            android:label="@string/title_activity_doms"
+            android:parentActivityName=".EditAlarmActivity"
+            android:theme="@style/Theme.Weckerapp.NoActionBar" />
+        <activity
+            android:name=".SolveTaskActivity"
+            android:exported="false"
+            android:label="@string/title_activity_solve_task"
+            android:theme="@style/Theme.Weckerapp.NoActionBar" />
+        <activity
+            android:name=".PopupTaskAktivity"
+            android:exported="false"
+            android:label="@string/title_activity_popup_task_aktivity" />
+        <activity
+            android:name=".EditAlarmActivity"
+            android:exported="false"
+            android:label="@string/title_activity_edit_alarm"
+            android:parentActivityName=".AlarmsActivity" />
+        <activity
+            android:name=".AlarmsActivity"
+            android:exported="false"
+            android:label="@string/title_activity_alarms"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/Theme.Weckerapp.NoActionBar" />
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/Theme.Weckerapp.NoActionBar" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
