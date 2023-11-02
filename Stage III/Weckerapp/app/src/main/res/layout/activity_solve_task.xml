@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SolveTaskActivity"
-    android:background="@color/atheneos_LightGrey">
+    android:id="@+id/container_solveTask">
 
 
     <android.support.v7.widget.Toolbar
@@ -44,7 +44,7 @@
         android:scaleX="1.2"
         android:scaleY="1.2"
         android:textAlignment="center"
-        android:textColorHighlight="@color/atheneos_yellow"
+        android:textColorHighlight="?attr/colorAccent"
         android:textSize="20sp"
         android:translationY="220dp" />
 

@@ -1,6 +1,8 @@
 package com.example.weckerapp;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -47,6 +49,8 @@ ImageView iv_colourPicker;
                 return true;
             }
         });
+
+        loadSettings();
     }
 
     public void button_saveColour_Clicked(View view) {
@@ -57,5 +61,12 @@ ImageView iv_colourPicker;
             SettingsActivity.sec = ((ColorDrawable) current_colour.getBackground()).getColor();
         }
         startActivity(intent);
+    }
+
+    public void loadSettings(){
+        SharedPreferences sharedPreferences = getSharedPreferences("Settings", Context.MODE_PRIVATE);
+        SettingsActivity.prim = sharedPreferences.getInt("primaryColour", R.color.atheneos_yellow);
+        SettingsActivity.sec = sharedPreferences.getInt("secondaryColour", R.color.atheneos_LightGrey);
+        findViewById(R.id.container_colourPicker).setBackgroundColor(SettingsActivity.sec);
     }
 }

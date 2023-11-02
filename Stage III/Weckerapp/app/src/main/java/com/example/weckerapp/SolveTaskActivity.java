@@ -2,6 +2,7 @@ package com.example.weckerapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -81,7 +82,9 @@ public class SolveTaskActivity extends AppCompatActivity {
             queueValidTasks();
         }
         timerIsActive = false;
-        inflateTask();}
+        inflateTask();
+        loadSettings();
+    }
 
 
     public void button_muteClicked(View view) {
@@ -215,6 +218,13 @@ public class SolveTaskActivity extends AppCompatActivity {
         }else {
             //Sound incorrect
         }
+    }
+
+    public void loadSettings(){
+        SharedPreferences sharedPreferences = getSharedPreferences("Settings", Context.MODE_PRIVATE);
+        SettingsActivity.prim = sharedPreferences.getInt("primaryColour", R.color.atheneos_yellow);
+        SettingsActivity.sec = sharedPreferences.getInt("secondaryColour", R.color.atheneos_LightGrey);
+        findViewById(R.id.container_solveTask).setBackgroundColor(SettingsActivity.sec);
     }
 
 }

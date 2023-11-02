@@ -1,6 +1,8 @@
 package com.example.weckerapp;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -92,6 +94,8 @@ static Bundle extras;
             }
         }, 800, 800);
 
+
+        loadSettings();
     }
 
 
@@ -116,6 +120,7 @@ static Bundle extras;
             Intent intent = new Intent(this, EditAlarmActivity.class);
             startActivity(intent);
         }
+
     }
 
     public void seekBar_difficultyClicked(View view) {
@@ -124,5 +129,12 @@ static Bundle extras;
 
     public void seekBar_numberClicked(View view) {
         tv_number.setText(getResources().getString(R.string.text_number_of_toSolves)+": " + sb_number.getProgress());
+    }
+
+    public void loadSettings(){
+        SharedPreferences sharedPreferences = getSharedPreferences("Settings", Context.MODE_PRIVATE);
+        SettingsActivity.prim = sharedPreferences.getInt("primaryColour", R.color.atheneos_yellow);
+        SettingsActivity.sec = sharedPreferences.getInt("secondaryColour", R.color.atheneos_LightGrey);
+        findViewById(R.id.container_toSolves).setBackgroundColor(SettingsActivity.sec);
     }
 }

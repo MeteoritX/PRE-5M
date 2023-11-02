@@ -64,7 +64,7 @@ public class EditAlarmActivity extends AppCompatActivity {
 
 
         //Schwierigkeit, Menge, Modul, ToSolves
-
+     loadSettings();
     }
 
 
@@ -88,6 +88,10 @@ public class EditAlarmActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("Settings", Context.MODE_PRIVATE);
         boolean switchState = sharedPreferences.getBoolean("switch_24h", false);
         tp_edit_alarm.setIs24HourView(switchState);
+            SettingsActivity.prim = sharedPreferences.getInt("primaryColour", R.color.atheneos_yellow);
+            SettingsActivity.sec = sharedPreferences.getInt("secondaryColour", R.color.atheneos_LightGrey);
+            findViewById(R.id.container_editAlarm).setBackgroundColor(SettingsActivity.sec);
+            //Colour the task icons
     }
 
     public void iv_addTaskClicked(View view) {

@@ -2,6 +2,7 @@ package com.example.weckerapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -50,5 +51,13 @@ public class AlarmsActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        loadSettings();
+    }
+
+    public void loadSettings(){
+        SharedPreferences sharedPreferences = getSharedPreferences("Settings", Context.MODE_PRIVATE);
+        SettingsActivity.prim = sharedPreferences.getInt("primaryColour", R.color.atheneos_yellow);
+        SettingsActivity.sec = sharedPreferences.getInt("secondaryColour", R.color.atheneos_LightGrey);
+        findViewById(R.id.container_alarms).setBackgroundColor(SettingsActivity.sec);
     }
 }

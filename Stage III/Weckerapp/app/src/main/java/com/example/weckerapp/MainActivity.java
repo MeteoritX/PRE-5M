@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -61,6 +62,9 @@ public class MainActivity extends AppCompatActivity {
 
     static MediaPlayer mediaPlayer;
 
+    static int globalPrimaryColour; //Accents and input elements
+    static int globalSecondaryColour; //Backgrounds
+    TabHost tabHost;
 
     TextClock tc;
     TimePicker tp;
@@ -76,11 +80,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         tc = findViewById(R.id.tec);
         tp = findViewById(R.id.tip);
 
         //region Tabs
-        TabHost tabHost = (TabHost) findViewById(R.id.tabHost);
+        tabHost = (TabHost) findViewById(R.id.tabHost);
         tabHost.setup();
         TabHost.TabSpec spec = tabHost.newTabSpec("Wecker");
         spec.setContent(R.id.tab1);
@@ -103,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
         chronometerRunning = false;
         button_start_stop = (Button) findViewById(R.id.button_start_stop);
         tv_delta_t = (TextView) findViewById(R.id.tv_delta_t);
-        loadSettings();
+
         tv_remainingSeconds = (TextView) findViewById(R.id.tv_remainingSeconds);
         spinnerClock = (TimePicker) findViewById(R.id.spinnerClock);
         countdownRunning = false;
@@ -155,7 +160,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             },0,16000);
         }
-
+        loadSettings();
     }
 
     @Override
@@ -235,7 +240,12 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("Settings", Context.MODE_PRIVATE);
         boolean switchState = sharedPreferences.getBoolean("switch_24h", false);
         tp.setIs24HourView(switchState);
+        SettingsActivity.prim = sharedPreferences.getInt("primaryColour", R.color.atheneos_yellow);
+        SettingsActivity.sec = sharedPreferences.getInt("secondaryColour", R.color.atheneos_LightGrey);
+        tabHost.setBackgroundColor(SettingsActivity.sec);
     }
+
+
     //region Countdown
     @SuppressLint("RestrictedApi")
     public void button_startCountdonwn_Clicked(View view) {
@@ -342,7 +352,6 @@ public class MainActivity extends AppCompatActivity {
                    }
                 }
 
-
                 AlarmsActivity.al_alarms.add(a);
                 i++;
             }
@@ -350,6 +359,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "EXCEPTION", Toast.LENGTH_SHORT);
         }
     }
+
 
 
 }

@@ -1,6 +1,8 @@
 package com.example.weckerapp;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
@@ -27,6 +29,7 @@ public class PopupTaskAktivity extends AppCompatActivity {
         if(index_of_alarm != -1){
             tv.setText(AlarmsActivity.al_alarms.get(index_of_alarm).displayed_title);
         }
+        loadSettings();
     }
 
     public void button_deactivateAlarmClicked(View view) {
@@ -42,6 +45,13 @@ public class PopupTaskAktivity extends AppCompatActivity {
         }
         intent.putExtra("alarm_index", index_of_alarm);
         startActivity(intent);
+    }
+
+    public void loadSettings(){
+        SharedPreferences sharedPreferences = getSharedPreferences("Settings", Context.MODE_PRIVATE);
+        SettingsActivity.prim = sharedPreferences.getInt("primaryColour", R.color.atheneos_yellow);
+        SettingsActivity.sec = sharedPreferences.getInt("secondaryColour", R.color.atheneos_LightGrey);
+        findViewById(R.id.container_popUpTask).setBackgroundColor(SettingsActivity.sec);
     }
 
 

@@ -26,6 +26,7 @@ public class SettingsActivity extends AppCompatActivity {
     View primaryColour;
     View secondaryColour;
 
+
     static int prim;
     static int sec;
     static Intent intentToColourPicker;
@@ -61,10 +62,11 @@ public class SettingsActivity extends AppCompatActivity {
 
         primaryColour.setBackgroundColor(prim);
         secondaryColour.setBackgroundColor(sec);
+
     }
 
 
-    public void loadSettings(){
+    public void loadSettings() {
         SharedPreferences sharedPreferences = getSharedPreferences("Settings", Context.MODE_PRIVATE);
         boolean switchState = sharedPreferences.getBoolean("switch_24h", false);
         switch_24h.setChecked(switchState);
@@ -74,6 +76,8 @@ public class SettingsActivity extends AppCompatActivity {
         sb_textScale.setProgress(Integer.parseInt(("" + sharedPreferences.getFloat("sb_textScale", 1.0f)).substring(2, 3)));
         primaryColour.setBackgroundColor(sharedPreferences.getInt("primaryColour", ((ColorDrawable) primaryColour.getBackground()).getColor()));
         secondaryColour.setBackgroundColor(sharedPreferences.getInt("secondaryColour", ((ColorDrawable) secondaryColour.getBackground()).getColor()));
+            findViewById(R.id.container_settings).setBackgroundColor(sec);
+
     }
 
     public void saveCurrenSettings(){
@@ -94,6 +98,7 @@ public class SettingsActivity extends AppCompatActivity {
         //AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+        // findViewById(R.id.container_settings).setBackgroundColor(android.R.attr.colorAccent);
     }
 
     public void primaryColourClicked(View view) {
@@ -118,5 +123,7 @@ public class SettingsActivity extends AppCompatActivity {
         sb_textScale.setProgress(0);
         primaryColour.setBackgroundColor(Color.rgb(Integer.valueOf("FF", 16), Integer.valueOf("A5", 16), Integer.valueOf("00", 16)));
         secondaryColour.setBackgroundColor(Color.rgb(Integer.valueOf("6A", 16), Integer.valueOf("6A", 16), Integer.valueOf("6A", 16)));
+        prim = R.color.atheneos_yellow;
+        sec = R.color.atheneos_DarkGrey;
     }
 }

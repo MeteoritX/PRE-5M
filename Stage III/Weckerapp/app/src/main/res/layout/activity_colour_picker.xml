@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ColourPickerActivity"
     android:orientation="vertical"
-    android:background="@color/atheneos_LightGrey">
+    android:id="@+id/container_colourPicker">
 
 
     <android.support.v7.widget.Toolbar
@@ -54,7 +54,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:height="70dp"
-        android:background="@color/atheneos_yellow"
+        android:background="?attr/colorAccent"
         android:onClick="button_saveColour_Clicked"
         android:text="@string/text_button_saveSettings"
         android:textSize="16sp"

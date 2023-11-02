@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingTop="?attr/actionBarSize"
-    android:background="@color/atheneos_LightGrey">
+    android:id="@+id/container_popUpTask">
 
     <TextView
         android:id="@+id/textView3"
@@ -24,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:height="70dp"
-        android:background="@color/atheneos_yellow"
+        android:background="?attr/colorAccent"
         android:onClick="button_deactivateAlarmClicked"
         android:text="@string/button_text_deactivateAlarm"
         android:textSize="16sp"
