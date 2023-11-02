@@ -9,11 +9,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Weckerapp">
         <activity
+            android:name=".ColourPickerActivity"
+            android:exported="false"
+            android:label="@string/title_activity_colour_picker"
+            android:theme="@style/Theme.Weckerapp.NoActionBar" />
+        <activity
             android:name=".ChooseToSolvesActivity"
             android:exported="false"
             android:label="@string/title_activity_choose_to_solves"
-            android:theme="@style/Theme.Weckerapp.NoActionBar"
-            android:parentActivityName=".ChooseModuleActivity"/>
+            android:parentActivityName=".ChooseModuleActivity"
+            android:theme="@style/Theme.Weckerapp.NoActionBar" />
         <activity
             android:name=".ChooseModuleActivity"
             android:exported="false"

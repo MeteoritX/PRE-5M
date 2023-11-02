@@ -5,6 +5,7 @@
         <item name="colorPrimary">@color/atheneos_DarkGrey</item>
         <item name="colorPrimaryDark">@color/atheneos_ContrastGrey</item>
         <item name="colorAccent">@color/atheneos_yellow</item>
+        <item name="android:colorBackground">@color/atheneos_LightGrey</item>
         <!-- Customize your theme here. -->
     </style>
 
