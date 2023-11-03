@@ -4,8 +4,11 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
+import android.content.res.Configuration;
 import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.SystemClock;
@@ -13,6 +16,7 @@ import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatDelegate;
 import android.text.format.Time;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -21,7 +25,10 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.Chronometer;
+import android.widget.LinearLayout;
+import android.widget.NumberPicker;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TabHost;
 import android.widget.TextClock;
 import android.widget.TextView;
@@ -35,6 +42,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -92,15 +100,31 @@ public class MainActivity extends AppCompatActivity {
         spec.setIndicator("Wecker");
         tabHost.addTab(spec);
 
-        spec = tabHost.newTabSpec("Timer");
-        spec.setContent(R.id.tab2);
-        spec.setIndicator("Timer");
-        tabHost.addTab(spec);
-        spec = tabHost.newTabSpec("Stoppuhr");
-        spec.setContent(R.id.tab3);
-        spec.setIndicator("Stoppuhr");
-        tabHost.addTab(spec);
+
+        SharedPreferences sharedPreferences = getSharedPreferences("Settings", Context.MODE_PRIVATE);
+        if((sharedPreferences.getBoolean("switch_reducedMode", false))){
+            for (int i = 0; i <  ((LinearLayout) findViewById(R.id.tab2)).getChildCount(); i++) {
+                ((LinearLayout) findViewById(R.id.tab2)).getChildAt(i).setAlpha(0.0f);
+            }
+
+            for (int i = 0; i <   ((LinearLayout) findViewById(R.id.tab3)).getChildCount(); i++) {
+                ((LinearLayout) findViewById(R.id.tab3)).getChildAt(i).setAlpha(0.0f);
+            }
+        }else {
+            findViewById(R.id.tab2).setVisibility(View.VISIBLE);
+            findViewById(R.id.tab3).setVisibility(View.VISIBLE);
+            spec = tabHost.newTabSpec("Timer");
+            spec.setContent(R.id.tab2);
+            spec.setIndicator("Timer");
+            tabHost.addTab(spec);
+            spec = tabHost.newTabSpec("Stoppuhr");
+            spec.setContent(R.id.tab3);
+            spec.setIndicator("Stoppuhr");
+            tabHost.addTab(spec);
+        }
         //endregion
+
+
 
         //Initialise reference variables
         chronometer = (Chronometer)  findViewById(R.id.chron);
@@ -160,6 +184,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             },0,16000);
         }
+        verifyPermission(this);
         loadSettings();
     }
 
@@ -243,6 +268,21 @@ public class MainActivity extends AppCompatActivity {
         SettingsActivity.prim = sharedPreferences.getInt("primaryColour", R.color.atheneos_yellow);
         SettingsActivity.sec = sharedPreferences.getInt("secondaryColour", R.color.atheneos_LightGrey);
         tabHost.setBackgroundColor(SettingsActivity.sec);
+
+
+        int nightModeFlag = this.getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+        if(nightModeFlag == Configuration.UI_MODE_NIGHT_NO){
+            button_setAlarm.setBackgroundColor(SettingsActivity.prim);
+            tabHost.getTabWidget().setBackgroundColor(SettingsActivity.prim);
+            button_startCountdown.setBackgroundColor(SettingsActivity.prim);
+            button_cancelCountdown.setBackgroundTintList(ColorStateList.valueOf(SettingsActivity.prim));
+            button_start_stop.setBackgroundColor(SettingsActivity.prim);
+            progressBar_outer.getProgressDrawable().setColorFilter(SettingsActivity.prim, android.graphics.PorterDuff.Mode.SRC_IN);
+            progressBar_decorator.getProgressDrawable().setColorFilter(SettingsActivity.prim, android.graphics.PorterDuff.Mode.SRC_IN);
+            progressBar_chronometer.getProgressDrawable().setColorFilter(SettingsActivity.prim, android.graphics.PorterDuff.Mode.SRC_IN);
+        }else if (sharedPreferences.getBoolean("switch_nightMode", false)){
+          Settings.System.putInt(getContentResolver(), Settings.System.SCREEN_BRIGHTNESS, 5);
+        }
     }
 
 
@@ -360,6 +400,15 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
+public void verifyPermission(Context ctx){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+            if(Settings.System.canWrite(ctx)){
+                //Permission is granted
+            }else{
+                Intent intentChangePermission = new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS);
+                ctx.startActivity(intentChangePermission);
+            }
+        }
+}
 
 }

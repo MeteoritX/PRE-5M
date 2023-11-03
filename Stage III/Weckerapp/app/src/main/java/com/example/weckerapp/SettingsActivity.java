@@ -3,6 +3,7 @@ package com.example.weckerapp;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -78,6 +79,13 @@ public class SettingsActivity extends AppCompatActivity {
         secondaryColour.setBackgroundColor(sharedPreferences.getInt("secondaryColour", ((ColorDrawable) secondaryColour.getBackground()).getColor()));
             findViewById(R.id.container_settings).setBackgroundColor(sec);
 
+        int nightModeFlag = this.getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+        if(nightModeFlag == Configuration.UI_MODE_NIGHT_NO){
+            switch_nightMode.setChecked(false);
+        }else if (nightModeFlag == Configuration.UI_MODE_NIGHT_YES) {
+            switch_nightMode.setChecked(true);
+        }
+
     }
 
     public void saveCurrenSettings(){
@@ -95,10 +103,13 @@ public class SettingsActivity extends AppCompatActivity {
 
     public void button_saveSettings_Clicked(View view) {
         saveCurrenSettings();
-        //AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        if(switch_nightMode.isChecked()){
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        }else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
-        // findViewById(R.id.container_settings).setBackgroundColor(android.R.attr.colorAccent);
     }
 
     public void primaryColourClicked(View view) {
@@ -123,7 +134,7 @@ public class SettingsActivity extends AppCompatActivity {
         sb_textScale.setProgress(0);
         primaryColour.setBackgroundColor(Color.rgb(Integer.valueOf("FF", 16), Integer.valueOf("A5", 16), Integer.valueOf("00", 16)));
         secondaryColour.setBackgroundColor(Color.rgb(Integer.valueOf("6A", 16), Integer.valueOf("6A", 16), Integer.valueOf("6A", 16)));
-        prim = R.color.atheneos_yellow;
-        sec = R.color.atheneos_DarkGrey;
+        prim = getResources().getColor(R.color.atheneos_yellow);
+        sec = getResources().getColor(R.color.atheneos_LightGrey);
     }
 }
