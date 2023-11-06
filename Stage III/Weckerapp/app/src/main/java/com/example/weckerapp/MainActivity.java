@@ -281,7 +281,7 @@ public class MainActivity extends AppCompatActivity {
             progressBar_decorator.getProgressDrawable().setColorFilter(SettingsActivity.prim, android.graphics.PorterDuff.Mode.SRC_IN);
             progressBar_chronometer.getProgressDrawable().setColorFilter(SettingsActivity.prim, android.graphics.PorterDuff.Mode.SRC_IN);
         }else if (sharedPreferences.getBoolean("switch_nightMode", false)){
-          Settings.System.putInt(getContentResolver(), Settings.System.SCREEN_BRIGHTNESS, 5);
+          Settings.System.putInt(getContentResolver(), Settings.System.SCREEN_BRIGHTNESS, 55);
         }
     }
 
