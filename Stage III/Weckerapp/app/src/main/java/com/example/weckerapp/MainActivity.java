@@ -77,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
     TextClock tc;
     TimePicker tp;
 
+    TextView tv_lab_remainingSeconds;
 
 
 
@@ -124,8 +125,6 @@ public class MainActivity extends AppCompatActivity {
         }
         //endregion
 
-
-
         //Initialise reference variables
         chronometer = (Chronometer)  findViewById(R.id.chron);
         chronometer.setFormat("%h:%m:%s");
@@ -150,6 +149,7 @@ public class MainActivity extends AppCompatActivity {
         progressBar_outer = findViewById(R.id.progressBar_outer);
         progressBar_outer.setMax(14);
         audioActivated = false;
+        tv_lab_remainingSeconds = findViewById(R.id.tv_text_remainingSec);
 
         if(AlarmsActivity.al_alarms == null){
             AlarmsActivity.al_alarms = new ArrayList<Alarm>();
@@ -283,6 +283,12 @@ public class MainActivity extends AppCompatActivity {
         }else if (sharedPreferences.getBoolean("switch_nightMode", false)){
           Settings.System.putInt(getContentResolver(), Settings.System.SCREEN_BRIGHTNESS, 55);
         }
+        float textScale = sharedPreferences.getFloat("sb_textScale", 1.0f);
+        button_setAlarm.setTextSize(16*textScale);
+        button_start_stop.setTextSize(16*textScale);
+        button_startCountdown.setTextSize(16*textScale);
+        tv_lab_remainingSeconds.setTextSize(24*textScale);
+        tv_delta_t.setTextSize(30*textScale);
     }
 
 

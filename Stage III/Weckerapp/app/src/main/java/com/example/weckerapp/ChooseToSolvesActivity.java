@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -136,5 +137,9 @@ static Bundle extras;
         SettingsActivity.prim = sharedPreferences.getInt("primaryColour", R.color.atheneos_yellow);
         SettingsActivity.sec = sharedPreferences.getInt("secondaryColour", R.color.atheneos_LightGrey);
         findViewById(R.id.container_toSolves).setBackgroundColor(SettingsActivity.sec);
+        float textScale = sharedPreferences.getFloat("sb_textScale", 1.0f);
+        ((Button) findViewById(R.id.button_saveToSolves)).setTextSize(16*textScale);
+        tv_difficulty.setTextSize(20*textScale);
+        tv_number.setTextSize(20*textScale);
     }
 }

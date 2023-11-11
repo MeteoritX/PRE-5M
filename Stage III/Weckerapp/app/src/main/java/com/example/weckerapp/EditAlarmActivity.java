@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TimePicker;
 
@@ -19,20 +20,9 @@ import com.example.weckerapp.alarmTasks.Domain;
 public class EditAlarmActivity extends AppCompatActivity {
 
     TimePicker tp_edit_alarm;
+    Button button_save_EditAlarm;
     static int alarmIndex;
 
-     ImageView iv_task1;
-     ImageView iv_task1_bg;
-     ImageView iv_task2;
-     ImageView iv_task2_bg;
-     ImageView iv_task3;
-     ImageView iv_task3_bg;
-     ImageView iv_task4;
-     ImageView iv_task4_bg;
-     ImageView iv_task5;
-     ImageView iv_task5_bg;
-     ImageView iv_task6;
-     ImageView iv_task6_bg;
 
     static Context context;
 
@@ -45,6 +35,7 @@ public class EditAlarmActivity extends AppCompatActivity {
         Alarm alarm = AlarmsActivity.al_alarms.get(alarmIndex);
 
         tp_edit_alarm = findViewById(R.id.tp_edit_alarm);
+        button_save_EditAlarm = findViewById(R.id.button_save_AlarmEdit);
         loadSettings();
         tp_edit_alarm.setHour(Integer.parseInt(alarm.title.split(":")[0]));
         tp_edit_alarm.setMinute(Integer.parseInt(alarm.title.split(":")[1]));
@@ -91,7 +82,8 @@ public class EditAlarmActivity extends AppCompatActivity {
             SettingsActivity.prim = sharedPreferences.getInt("primaryColour", R.color.atheneos_yellow);
             SettingsActivity.sec = sharedPreferences.getInt("secondaryColour", R.color.atheneos_LightGrey);
             findViewById(R.id.container_editAlarm).setBackgroundColor(SettingsActivity.sec);
-            //Colour the task icons
+            float textScale = sharedPreferences.getFloat("sb_textScale", 1.0f);
+         button_save_EditAlarm.setTextSize(16*textScale);
     }
 
     public void iv_addTaskClicked(View view) {

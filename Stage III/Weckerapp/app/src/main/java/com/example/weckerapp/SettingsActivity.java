@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -26,6 +27,7 @@ public class SettingsActivity extends AppCompatActivity {
     SeekBar sb_textScale;
     View primaryColour;
     View secondaryColour;
+    Button button_saveSettings;
 
 
     static int prim;
@@ -40,6 +42,7 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_settings);
 
+        button_saveSettings = findViewById(R.id.button_saveSettings);
         toolbar_settings = findViewById(R.id.toolbar_settings);
         setSupportActionBar(toolbar_settings);
         ActionBar actionBar = getSupportActionBar();
@@ -85,7 +88,8 @@ public class SettingsActivity extends AppCompatActivity {
         }else if (nightModeFlag == Configuration.UI_MODE_NIGHT_YES) {
             switch_nightMode.setChecked(true);
         }
-
+        float textScale = sharedPreferences.getFloat("sb_textScale", 1.0f);
+        button_saveSettings.setTextSize(16*textScale);
     }
 
     public void saveCurrenSettings(){

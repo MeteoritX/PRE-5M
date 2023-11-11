@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -68,5 +69,7 @@ ImageView iv_colourPicker;
         SettingsActivity.prim = sharedPreferences.getInt("primaryColour", R.color.atheneos_yellow);
         SettingsActivity.sec = sharedPreferences.getInt("secondaryColour", R.color.atheneos_LightGrey);
         findViewById(R.id.container_colourPicker).setBackgroundColor(SettingsActivity.sec);
+        float textScale = sharedPreferences.getFloat("sb_textScale", 1.0f);
+        ((Button) findViewById(R.id.button_saveColour)).setTextSize(16*textScale);
     }
 }

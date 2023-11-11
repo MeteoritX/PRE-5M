@@ -10,6 +10,7 @@ import android.os.CountDownTimer;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -29,6 +30,7 @@ public class SolveTaskActivity extends AppCompatActivity {
    TextView tv_toSolve;
    TextView tv_total_solved;
    EditText et_input;
+   Button button_check;
     ProgressBar pb_remaining_time;
     FloatingActionButton button_mute;
     static CountDownTimer countdown_timer;
@@ -60,11 +62,10 @@ public class SolveTaskActivity extends AppCompatActivity {
         setSupportActionBar(findViewById(R.id.toolbar_solve));
         getSupportActionBar().setTitle(getResources().getString(R.string.title_activity_solve_task));
 
-
         Intent testIntent = getIntent();
         Bundle b =  testIntent.getExtras();
         alarm_index = b.getInt("alarm_index", -1); //nullpointer
-
+        button_check = findViewById(R.id.button_check);
         task_queue = new ArrayDeque<>();
         pb_remaining_time = findViewById(R.id.progressBar_solveTask);
          button_mute = findViewById(R.id.button_mute);
@@ -225,6 +226,8 @@ public class SolveTaskActivity extends AppCompatActivity {
         SettingsActivity.prim = sharedPreferences.getInt("primaryColour", R.color.atheneos_yellow);
         SettingsActivity.sec = sharedPreferences.getInt("secondaryColour", R.color.atheneos_LightGrey);
         findViewById(R.id.container_solveTask).setBackgroundColor(SettingsActivity.sec);
+        float textScale = sharedPreferences.getFloat("sb_textScale", 1.0f);
+        button_check.setTextSize(16*textScale);
     }
 
 }
