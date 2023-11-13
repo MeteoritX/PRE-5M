@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:textAlignment="center"
+    tools:context=".ChooseDomainActivity"
+    android:id="@+id/container_domains">
+
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_doms"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:translationY="60dp"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="600dp"
+            android:layout_gravity="top|center">
+
+            <ImageButton
+                android:id="@+id/iv_math"
+                android:layout_width="match_parent"
+                android:layout_height="260dp"
+                android:adjustViewBounds="true"
+                android:background="@drawable/math"
+                android:onClick="domain_mathClicked"
+                android:scaleType="fitCenter"
+                android:translationY="10dp"
+                app:layout_constraintBottom_toBottomOf="@id/iv_math" />
+
+            <TextView
+                android:id="@+id/tv_math"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:onClick="domain_mathClicked"
+                android:text="@string/domain_mathematics"
+                android:textAlignment="center"
+                android:textColor="#BECDD8"
+                android:textSize="34sp"
+                android:textStyle="bold"
+                android:translationY="-100dp" />
+
+
+            <ImageButton
+                android:id="@+id/iv_med"
+                android:layout_width="match_parent"
+                android:layout_height="260dp"
+                android:background="@drawable/medicine"
+                android:cropToPadding="true"
+                android:onClick="domain_medClicked"
+                android:scaleType="fitCenter"
+                android:translationY="-10dp" />
+
+            <TextView
+                android:id="@+id/tv_med"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="domain_mathClicked"
+                android:text="@string/domain_medicine"
+                android:textAlignment="center"
+                android:textSize="34sp"
+                android:textStyle="bold"
+                android:translationY="-110dp" />
+
+
+            <ImageButton
+                android:id="@+id/iv_ling"
+                android:layout_width="match_parent"
+                android:layout_height="260dp"
+                android:background="@drawable/linguistics"
+                android:cropToPadding="true"
+                android:onClick="domain_lingClicked"
+                android:scaleType="fitCenter"
+                android:translationY="-30dp" />
+
+
+            <TextView
+                android:id="@+id/tv_ling"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="domain_lingClicked"
+                android:text="@string/domain_linguistics"
+                android:textAlignment="center"
+                android:textSize="34sp"
+                android:textStyle="bold"
+                android:translationY="-140dp"/>
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>
