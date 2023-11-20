@@ -29,9 +29,11 @@ public class ChooseModuleActivity extends AppCompatActivity {
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.baseline_arrow_back_);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        if(extras == null){
+        if(extras == null || extras.getInt("dom", -1 ) != -1){
             intent_from_module = getIntent();
             extras = intent_from_module.getExtras();
+
+            // !!!!!!!! Rücktaste von ChooseToSovesActiviy führt zu Fehler
         }
 
         context = this;
@@ -42,12 +44,27 @@ public class ChooseModuleActivity extends AppCompatActivity {
         lv_modules = findViewById(R.id.lv_modules);
         lv_modules.setAdapter(new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1, al_modules));
 
-        //Stage II only
-        if(al_modules.size() == 0){
+        //Stage IV
+
+        al_modules.clear();
+        if(extras.getInt("dom",-1) == 0){
             al_modules.add(getResources().getString(R.string.module_arithmetics));
             al_modules.add(getResources().getString(R.string.module_algebra));
             al_modules.add(getResources().getString(R.string.module_geometry));
         }
+        if(extras.getInt("dom",-1) == 1){
+
+            al_modules.add(getResources().getString(R.string.module_anatomyTerms));
+            al_modules.add(getResources().getString(R.string.module_anatomyModel));
+            al_modules.add(getResources().getString(R.string.module_somethingMedical));
+        }
+        if(extras.getInt("dom",-1) == 2){
+
+            al_modules.add(getResources().getString(R.string.module_lateinDic));
+            al_modules.add(getResources().getString(R.string.module_englishDic));
+            al_modules.add(getResources().getString(R.string.module_spanishDic));
+        }
+
 
         lv_modules.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

@@ -35,8 +35,14 @@
     <string name="text_secondaryColour">Sekundärfarbe</string>
     <string name="title_activity_colour_picker">Farbe wählen</string>
     <string name="text_switch_reducedMode">UI Reduktion</string>
+    <string name="module_anatomyTerms">Anatomie Begriffe</string>
+    <string name="module_anatomyModel">Anatomie Modell</string>
+    <string name="module_somethingMedical">Irgendwas medizinisches</string>
+    <string name="module_englishDic">Englisch</string>
+    <string name="module_lateinDic">Latein</string>
+    <string name="module_spanishDic">Spanisch</string>
 
-    }
+
 
 
 </resources>

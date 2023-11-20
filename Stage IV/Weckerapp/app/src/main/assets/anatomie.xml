@@ -1,0 +1,28 @@
+<Liste Name="Liste">
+    <Begriff Latein="Sinister" Deutsch="Links"/>
+    <Begriff Latein="Dexter" Deutsch="Rechts"/>
+    <Begriff Latein="Anterior" Deutsch="Vorne"/>
+    <Begriff Latein="Posterior" Deutsch="Hinten"/>
+    <Begriff Latein="Ventral" Deutsch="Zur Vorderfläche"/>
+    <Begriff Latein="Dorsal" Deutsch="Zur Rückfläche"/>
+    <Begriff Latein="Distal" Deutsch="Weg vom Ursprung"/>
+    <Begriff Latein="Proximal" Deutsch="Nahe zum Ursprung"/>
+    <Begriff Latein="Median" Deutsch="In der Mitte"/>
+    <Begriff Latein="Medial" Deutsch="Zur Mitte hin"/>
+    <Begriff Latein="Lateral" Deutsch="Von der Mitte weg"/>
+    <Begriff Latein="Superior" Deutsch="Oberhalb"/>
+    <Begriff Latein="Inferior" Deutsch="Unterhalb"/>
+    <Begriff Latein="Kranial" Deutsch="Richtung Kopf"/>
+    <Begriff Latein="Kaudal" Deutsch="Richtung Steiß"/>
+    <Begriff Latein="Externus" Deutsch="Außen"/>
+    <Begriff Latein="Internus" Deutsch="Innen"/>
+    <Begriff Latein="Superficialis" Deutsch="Oberflächlich"/>
+    <Begriff Latein="Profundus" Deutsch="Tief liegen"/>
+    <Begriff Latein="Palmar" Deutsch="Zur Handfläche hin"/>
+    <Begriff Latein="Plantar" Deutsch="Zur Fußsohle hin"/>
+    <Begriff Latein="Os" Deutsch="Knochen"/>
+    <Begriff Latein="Musculus" Deutsch="Muskel"/>
+    <Begriff Latein="Nervus" Deutsch="Nerv"/>
+    <Begriff Latein="Arteria" Deutsch="Arterie"/>
+    <Begriff Latein="Vas lymphaticum" Deutsch="Lymphbahn"/>
+</Liste>

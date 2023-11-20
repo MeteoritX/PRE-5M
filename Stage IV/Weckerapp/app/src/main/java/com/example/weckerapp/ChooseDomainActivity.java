@@ -30,19 +30,26 @@ public class ChooseDomainActivity extends AppCompatActivity {
 
     public void domain_mathClicked(View view) {
        Intent intent = new Intent(this, ChooseModuleActivity.class);
-       intent.putExtras(extras);
-       intent.putExtra("dom", Domain.DOM_MATHEMATICS.ordinal());
+        extras.remove("dom");
+        extras.putInt("dom", Domain.DOM_MATHEMATICS.ordinal());
+        intent.putExtras(extras);
        startActivity(intent);
     }
 
     public void domain_medClicked(View view) {
-        //Stage IV
-        //Dom Enum
+        Intent intent = new Intent(this, ChooseModuleActivity.class);
+        extras.remove("dom");
+        extras.putInt("dom", Domain.DOM_MEDICINE.ordinal());
+        intent.putExtras(extras);
+        startActivity(intent);
     }
 
     public void domain_lingClicked(View view) {
-        //Stage IV
-        //Dom Enum
+        Intent intent = new Intent(this, ChooseModuleActivity.class);
+        extras.remove("dom");
+        extras.putInt("dom", Domain.DOM_LINGUISTICS.ordinal());
+        intent.putExtras(extras);
+        startActivity(intent);
     }
 
     public void loadSettings(){
