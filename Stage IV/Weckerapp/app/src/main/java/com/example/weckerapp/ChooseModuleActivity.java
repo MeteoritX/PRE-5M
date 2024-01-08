@@ -65,12 +65,15 @@ public class ChooseModuleActivity extends AppCompatActivity {
             al_modules.add(getResources().getString(R.string.module_spanishDic));
         }
 
+        int SelectedModul = extras.getInt("dom");
+
 
         lv_modules.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(context, ChooseToSolvesActivity.class);
                 intent.putExtras(extras);
+                intent.putExtra("dom", SelectedModul);
                 intent.putExtra("module_indexer", al_modules.get(i));
                 startActivity(intent);
             }

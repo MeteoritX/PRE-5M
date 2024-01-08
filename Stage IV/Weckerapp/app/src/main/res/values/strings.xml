@@ -41,8 +41,10 @@
     <string name="module_englishDic">Englisch</string>
     <string name="module_lateinDic">Latein</string>
     <string name="module_spanishDic">Spanisch</string>
-
-
+    <string name="title_activity_solve_task_medical">SolveTaskMedical</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="title_activity_solve_task_linguistics">SolveTaskLinguistics</string>
 
 
 </resources>

@@ -1,6 +1,7 @@
 package com.example.weckerapp;
 
 import android.content.res.AssetManager;
+import android.util.ArrayMap;
 import android.util.Xml;
 
 import org.xmlpull.v1.XmlPullParser;
@@ -9,12 +10,14 @@ import org.xmlpull.v1.XmlPullParserException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 
 public class XML {
-    public static HashMap<String, String> readXML(String filename, String sprache1, String sprache2) throws IOException, XmlPullParserException {
+    public static ArrayMap<String, String> readXML(String filename, String sprache1, String sprache2) throws IOException, XmlPullParserException {
         AssetManager assetManager = MainActivity.ctx.getAssets();
         InputStream stream = assetManager.open(filename);
-        HashMap<String, String> dic = new HashMap<>();
+        ArrayMap<String, String> dic = new ArrayMap<>();
 
 
 

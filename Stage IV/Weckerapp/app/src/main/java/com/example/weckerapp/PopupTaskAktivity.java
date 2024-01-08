@@ -15,7 +15,10 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.weckerapp.alarmTasks.AlarmTask;
 import com.example.weckerapp.databinding.ActivityPopupTaskAktivityBinding;
+
+import java.util.ArrayList;
 
 public class PopupTaskAktivity extends AppCompatActivity {
 
@@ -39,8 +42,26 @@ public class PopupTaskAktivity extends AppCompatActivity {
         MainActivity.mediaPlayer.stop();
         Intent intent;
         if(index_of_alarm != -1 && AlarmsActivity.al_alarms.get(index_of_alarm).atheneosAlarm){
-            intent = new Intent(this, SolveTaskActivity.class);
-            startActivity(intent);
+            ArrayList<AlarmTask> TaskList = AlarmsActivity.al_alarms.get(index_of_alarm).getAl_AlarmTasks();
+            switch (TaskList.get(0).getDom()){
+                case 0:
+                    intent = new Intent(this, SolveTaskMath.class);
+                    startActivity(intent);
+                    break;
+                case 1:
+                    intent = new Intent(this, SolveTaskMedical.class);
+                    startActivity(intent);
+                    break;
+                case 2:
+                    intent = new Intent(this, SolveTaskLinguistics.class);
+                    startActivity(intent);
+                    break;
+                default:
+                    intent = new Intent(this, SolveTaskMath.class);
+                    startActivity(intent);
+                    break;
+            }
+
         }else{
             //Clearance for next alarm
             MainActivity.audioActivated = false;

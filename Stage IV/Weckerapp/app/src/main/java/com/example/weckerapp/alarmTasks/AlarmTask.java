@@ -1,5 +1,10 @@
 package com.example.weckerapp.alarmTasks;
 
+import android.media.MediaPlayer;
+import android.provider.Settings;
+
+import com.example.weckerapp.R;
+
 //This resembles a Task (Aufgabenstellung)
 public class AlarmTask {
 

@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.PorterDuff;
+import android.icu.number.Scale;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -125,11 +126,11 @@ public class EditAlarmActivity extends AppCompatActivity {
                     break;
                 case 1:
                     // Domain.DOM_MEDICINE
-                    //iv_task.setImageResource(R.drawable.);
+                    iv_task.setImageResource(R.drawable.baseline_medical_24);
                     break;
                 case 2:
                     // Domain.DOM_LINGUISTICS
-                    //iv_task.setImageResource(R.drawable.); (Book)
+                    iv_task.setImageResource(R.drawable.baseline_lingu_24);
                     break;
             }
         }

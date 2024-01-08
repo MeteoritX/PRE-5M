@@ -53,47 +53,141 @@ static Bundle extras;
 
         String module_diff = extras.getString("module_indexer", ""); //Module differentiator
 
-        if(t_active == false)t.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                seekBar_difficultyClicked(sb_difficulty);
-                seekBar_numberClicked(sb_number);
+        switch(extras.getInt("dom")){
+            case 0:
+                if(t_active == false)t.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        seekBar_difficultyClicked(sb_difficulty);
+                        seekBar_numberClicked(sb_number);
 
-                switch (sb_difficulty.getProgress()){
-                    case 1:
-                        tv_example.setText("9 + 3 =");
-                        break;
-                    case 2:
-                        tv_example.setText("9 + 12 =");
-                        break;
-                    case 3:
-                        tv_example.setText("34 + 12 =");
-                        break;
-                    case 4:
-                        tv_example.setText("46 + 199 =");
-                        break;
-                    case 5:
-                        tv_example.setText("322 + 710 =");
-                        break;
-                    case 6:
-                        tv_example.setText("352 - 795 =");
-                        break;
-                    case 7:
-                        tv_example.setText("12 * 3 * 6 =");
-                        break;
-                    case 8:
-                        tv_example.setText("(-46) * 9 + 382 =");
-                        break;
-                    case 9:
-                        tv_example.setText("34 * 399 + (-77) =");
-                        break;
-                    case 10:
-                        tv_example.setText("(-843) * (-503) + 23 =");
-                        break;
-                }
+                        switch (sb_difficulty.getProgress()){
+                            case 1:
+                                tv_example.setText("9 + 3 =");
+                                break;
+                            case 2:
+                                tv_example.setText("9 + 12 =");
+                                break;
+                            case 3:
+                                tv_example.setText("34 + 12 =");
+                                break;
+                            case 4:
+                                tv_example.setText("46 + 199 =");
+                                break;
+                            case 5:
+                                tv_example.setText("322 + 710 =");
+                                break;
+                            case 6:
+                                tv_example.setText("352 - 795 =");
+                                break;
+                            case 7:
+                                tv_example.setText("12 * 3 * 6 =");
+                                break;
+                            case 8:
+                                tv_example.setText("(-46) * 9 + 382 =");
+                                break;
+                            case 9:
+                                tv_example.setText("34 * 399 + (-77) =");
+                                break;
+                            case 10:
+                                tv_example.setText("(-843) * (-503) + 23 =");
+                                break;
+                        }
 
-            }
-        }, 800, 800);
+                    }
+                }, 800, 800);
+
+                break;
+            case 1:
+                if(t_active == false)t.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        seekBar_difficultyClicked(sb_difficulty);
+                        seekBar_numberClicked(sb_number);
+
+                        switch (sb_difficulty.getProgress()){
+                            case 1:
+                                tv_example.setText("50% des Wortes");
+                                break;
+                            case 2:
+                                tv_example.setText("55% des Wortes");
+                                break;
+                            case 3:
+                                tv_example.setText("60% des Wortes");
+                                break;
+                            case 4:
+                                tv_example.setText("65% des Wortes");
+                                break;
+                            case 5:
+                                tv_example.setText("70% des Wortes");
+                                break;
+                            case 6:
+                                tv_example.setText("75% des Wortes");
+                                break;
+                            case 7:
+                                tv_example.setText("80% des Wortes");
+                                break;
+                            case 8:
+                                tv_example.setText("85% des Wortes");
+                                break;
+                            case 9:
+                                tv_example.setText("90% des Wortes");
+                                break;
+                            case 10:
+                                tv_example.setText("100% des Wortes");
+                                break;
+                        }
+
+                    }
+                }, 800, 800);
+
+                break;
+            case 2:
+                if(t_active == false)t.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        seekBar_difficultyClicked(sb_difficulty);
+                        seekBar_numberClicked(sb_number);
+
+                        switch (sb_difficulty.getProgress()){
+                            case 1:
+                                tv_example.setText("50% des Wortes");
+                                break;
+                            case 2:
+                                tv_example.setText("55% des Wortes");
+                                break;
+                            case 3:
+                                tv_example.setText("60% des Wortes");
+                                break;
+                            case 4:
+                                tv_example.setText("65% des Wortes");
+                                break;
+                            case 5:
+                                tv_example.setText("70% des Wortes");
+                                break;
+                            case 6:
+                                tv_example.setText("75% des Wortes");
+                                break;
+                            case 7:
+                                tv_example.setText("80% des Wortes");
+                                break;
+                            case 8:
+                                tv_example.setText("85% des Wortes");
+                                break;
+                            case 9:
+                                tv_example.setText("90% des Wortes");
+                                break;
+                            case 10:
+                                tv_example.setText("100% des Wortes");
+                                break;
+                        }
+
+                    }
+                }, 800, 800);
+                break;
+        }
+
+
 
 
         loadSettings();

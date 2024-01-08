@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission
+        android:name="android.permission.WRITE_SETTINGS"
+        tools:ignore="ProtectedPermissions" />
 
     <application
         android:allowBackup="true"
@@ -9,6 +13,16 @@
         android:roundIcon="@drawable/atheneos"
         android:supportsRtl="true"
         android:theme="@style/Theme.Weckerapp">
+        <activity
+            android:name=".SolveTaskLinguistics"
+            android:exported="false"
+            android:label="@string/title_activity_solve_task_linguistics"
+            android:theme="@style/Theme.Weckerapp.NoActionBar" />
+        <activity
+            android:name=".SolveTaskMedical"
+            android:exported="false"
+            android:label="@string/title_activity_solve_task_medical"
+            android:theme="@style/Theme.Weckerapp.NoActionBar" />
         <activity
             android:name=".ColourPickerActivity"
             android:exported="false"
@@ -33,7 +47,7 @@
             android:parentActivityName=".EditAlarmActivity"
             android:theme="@style/Theme.Weckerapp.NoActionBar" />
         <activity
-            android:name=".SolveTaskActivity"
+            android:name=".SolveTaskMath"
             android:exported="false"
             android:label="@string/title_activity_solve_task"
             android:theme="@style/Theme.Weckerapp.NoActionBar" />
@@ -67,8 +81,5 @@
             </intent-filter>
         </activity>
     </application>
-
-    <uses-permission android:name="android.permission.WRITE_SETTINGS"
-        tools:ignore="ProtectedPermissions" />
 
 </manifest>
