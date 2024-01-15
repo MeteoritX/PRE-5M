@@ -4,10 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingTop="?attr/actionBarSize"
-    android:id="@+id/container_popUpTask">
+    android:id="@+id/container_showScore">
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/tv_score_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -19,7 +19,7 @@
 
 
     <Button
-        android:id="@+id/button_deactivateAlarm"
+        android:id="@+id/button_back"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:height="70dp"

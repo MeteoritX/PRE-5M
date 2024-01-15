@@ -4,19 +4,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
-
 import com.example.weckerapp.alarmTasks.AlarmTask;
-import com.example.weckerapp.databinding.ActivityPopupTaskAktivityBinding;
 
 import java.util.ArrayList;
 
@@ -31,8 +24,8 @@ public class PopupTaskAktivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_popup_task_aktivity);
-        tv = findViewById(R.id.textView3);
-        button_deactivateAlarm = findViewById(R.id.button_deactivateAlarm);
+        tv = findViewById(R.id.tv_score_number);
+        button_deactivateAlarm = findViewById(R.id.button_back);
         index_of_alarm = getIntent().getIntExtra("alarm_index", -1);
         task_index = getIntent().getIntExtra("task_index", -1);
 
@@ -90,7 +83,7 @@ public class PopupTaskAktivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("Settings", Context.MODE_PRIVATE);
         SettingsActivity.prim = sharedPreferences.getInt("primaryColour", R.color.atheneos_yellow);
         SettingsActivity.sec = sharedPreferences.getInt("secondaryColour", R.color.atheneos_LightGrey);
-        findViewById(R.id.container_popUpTask).setBackgroundColor(SettingsActivity.sec);
+        findViewById(R.id.container_showScore).setBackgroundColor(SettingsActivity.sec);
         float textScale = sharedPreferences.getFloat("sb_textScale", 1.0f);
        // button_deactivateAlarm.setTextSize(16*textScale);
     }

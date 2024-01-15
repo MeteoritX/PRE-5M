@@ -211,6 +211,11 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent_alarms);
                 return true;
 
+            case R.id.score:
+                Intent intent_score = new Intent(this, ShowScoreActivity.class);
+                startActivity(intent_score);
+                return true;
+
             default:
                 return super.onOptionsItemSelected(item);
         }
