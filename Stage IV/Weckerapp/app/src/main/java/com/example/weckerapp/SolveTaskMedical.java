@@ -63,7 +63,7 @@ public class SolveTaskMedical extends AppCompatActivity {
     int difficuty;
     int toSolves;
     int solved;
-    int currentOutcome;
+
     //--------------------------------------
 
     @Override
@@ -87,6 +87,7 @@ public class SolveTaskMedical extends AppCompatActivity {
         Intent testIntent = getIntent();
         Bundle b = testIntent.getExtras();
         alarm_index = b.getInt("alarm_index", -1); //nullpointer
+
         button_check = findViewById(R.id.button_check);
         task_queue = new ArrayDeque<>();
         pb_remaining_time = findViewById(R.id.progressBar_solveTask);
@@ -188,6 +189,7 @@ public class SolveTaskMedical extends AppCompatActivity {
             if (mediaPlayer2.isPlaying()) mediaPlayer2.stop();
             if (timerIsActive) countdown_timer.cancel();
 
+            CurrentTask.current_task++;
             Intent intent = new Intent(context, MainActivity.class);
             intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);

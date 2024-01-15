@@ -175,10 +175,11 @@ public class SolveTaskMath extends AppCompatActivity {
             //Sound next task
             generateMathTask();
         } else {
-            //All done - no tasks left
-            Toast.makeText(this,"Sehr gut gemacht", Toast.LENGTH_SHORT).show();
+            //All done - no ToSolves left
+            //Toast.makeText(this,"Sehr gut gemacht", Toast.LENGTH_SHORT).show();
             if (mediaPlayer.isPlaying()) mediaPlayer.stop();
             if (timerIsActive) countdown_timer.cancel();
+            CurrentTask.current_task++;
             Intent intent = new Intent(context, MainActivity.class);
             intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);

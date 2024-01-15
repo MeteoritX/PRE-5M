@@ -25,6 +25,8 @@ public class PopupTaskAktivity extends AppCompatActivity {
     TextView tv;
     int index_of_alarm;
     Button button_deactivateAlarm;
+    int task_index;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +34,8 @@ public class PopupTaskAktivity extends AppCompatActivity {
         tv = findViewById(R.id.textView3);
         button_deactivateAlarm = findViewById(R.id.button_deactivateAlarm);
         index_of_alarm = getIntent().getIntExtra("alarm_index", -1);
+        task_index = getIntent().getIntExtra("task_index", -1);
+
         if(index_of_alarm != -1){
             tv.setText(AlarmsActivity.al_alarms.get(index_of_alarm).displayed_title);
         }
@@ -41,23 +45,33 @@ public class PopupTaskAktivity extends AppCompatActivity {
     public void button_deactivateAlarmClicked(View view) {
         MainActivity.mediaPlayer.stop();
         Intent intent;
+
         if(index_of_alarm != -1 && AlarmsActivity.al_alarms.get(index_of_alarm).atheneosAlarm){
             ArrayList<AlarmTask> TaskList = AlarmsActivity.al_alarms.get(index_of_alarm).getAl_AlarmTasks();
-            switch (TaskList.get(0).getDom()){
+
+            int i = CurrentTask.current_task;
+
+            int a = TaskList.get(CurrentTask.current_task).getDom();
+
+            switch (TaskList.get(CurrentTask.current_task).getDom()){
                 case 0:
                     intent = new Intent(this, SolveTaskMath.class);
+                    CurrentTask.current_task++;
                     startActivity(intent);
                     break;
                 case 1:
                     intent = new Intent(this, SolveTaskMedical.class);
+                    CurrentTask.current_task++;
                     startActivity(intent);
                     break;
                 case 2:
                     intent = new Intent(this, SolveTaskLinguistics.class);
+                    CurrentTask.current_task++;
                     startActivity(intent);
                     break;
                 default:
                     intent = new Intent(this, SolveTaskMath.class);
+                    CurrentTask.current_task++;
                     startActivity(intent);
                     break;
             }
@@ -65,6 +79,7 @@ public class PopupTaskAktivity extends AppCompatActivity {
         }else{
             //Clearance for next alarm
             MainActivity.audioActivated = false;
+            //CurrentTask.current_task = 0;
             intent = new Intent(this, MainActivity.class);
         }
         intent.putExtra("alarm_index", index_of_alarm);

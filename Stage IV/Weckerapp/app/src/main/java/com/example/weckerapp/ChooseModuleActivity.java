@@ -49,20 +49,13 @@ public class ChooseModuleActivity extends AppCompatActivity {
         al_modules.clear();
         if(extras.getInt("dom",-1) == 0){
             al_modules.add(getResources().getString(R.string.module_arithmetics));
-            al_modules.add(getResources().getString(R.string.module_algebra));
-            al_modules.add(getResources().getString(R.string.module_geometry));
         }
         if(extras.getInt("dom",-1) == 1){
 
             al_modules.add(getResources().getString(R.string.module_anatomyTerms));
-            al_modules.add(getResources().getString(R.string.module_anatomyModel));
-            al_modules.add(getResources().getString(R.string.module_somethingMedical));
         }
         if(extras.getInt("dom",-1) == 2){
-
-            al_modules.add(getResources().getString(R.string.module_lateinDic));
             al_modules.add(getResources().getString(R.string.module_englishDic));
-            al_modules.add(getResources().getString(R.string.module_spanishDic));
         }
 
         int SelectedModul = extras.getInt("dom");

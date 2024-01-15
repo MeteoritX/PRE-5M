@@ -188,6 +188,7 @@ public class SolveTaskLinguistics extends AppCompatActivity {
             if (mediaPlayer2.isPlaying()) mediaPlayer2.stop();
             if (timerIsActive) countdown_timer.cancel();
 
+            CurrentTask.current_task++;
             Intent intent = new Intent(context, MainActivity.class);
             intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);

@@ -25,6 +25,8 @@ public class ChooseToSolvesActivity extends AppCompatActivity {
     TextView tv_example;
     static Timer t;
     static boolean t_active;
+    int alarm_index;
+    int task_index;
 
 static Bundle extras;
 
@@ -34,10 +36,12 @@ static Bundle extras;
         setContentView(R.layout.activity_choose_to_solves);
         setSupportActionBar(findViewById(R.id.toolbar_toSolves));
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.baseline_arrow_back_);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
         if(extras == null){
             extras = getIntent().getExtras();
+            alarm_index = extras.getInt("alarm_index", -1);
+            task_index = extras.getInt("task_index", -1);
             t_active = false;
             t = new Timer();
         }
@@ -55,93 +59,7 @@ static Bundle extras;
 
         switch(extras.getInt("dom")){
             case 0:
-                if(t_active == false)t.schedule(new TimerTask() {
-                    @Override
-                    public void run() {
-                        seekBar_difficultyClicked(sb_difficulty);
-                        seekBar_numberClicked(sb_number);
-
-                        switch (sb_difficulty.getProgress()){
-                            case 1:
-                                tv_example.setText("9 + 3 =");
-                                break;
-                            case 2:
-                                tv_example.setText("9 + 12 =");
-                                break;
-                            case 3:
-                                tv_example.setText("34 + 12 =");
-                                break;
-                            case 4:
-                                tv_example.setText("46 + 199 =");
-                                break;
-                            case 5:
-                                tv_example.setText("322 + 710 =");
-                                break;
-                            case 6:
-                                tv_example.setText("352 - 795 =");
-                                break;
-                            case 7:
-                                tv_example.setText("12 * 3 * 6 =");
-                                break;
-                            case 8:
-                                tv_example.setText("(-46) * 9 + 382 =");
-                                break;
-                            case 9:
-                                tv_example.setText("34 * 399 + (-77) =");
-                                break;
-                            case 10:
-                                tv_example.setText("(-843) * (-503) + 23 =");
-                                break;
-                        }
-
-                    }
-                }, 800, 800);
-
-                break;
             case 1:
-                if(t_active == false)t.schedule(new TimerTask() {
-                    @Override
-                    public void run() {
-                        seekBar_difficultyClicked(sb_difficulty);
-                        seekBar_numberClicked(sb_number);
-
-                        switch (sb_difficulty.getProgress()){
-                            case 1:
-                                tv_example.setText("50% des Wortes");
-                                break;
-                            case 2:
-                                tv_example.setText("55% des Wortes");
-                                break;
-                            case 3:
-                                tv_example.setText("60% des Wortes");
-                                break;
-                            case 4:
-                                tv_example.setText("65% des Wortes");
-                                break;
-                            case 5:
-                                tv_example.setText("70% des Wortes");
-                                break;
-                            case 6:
-                                tv_example.setText("75% des Wortes");
-                                break;
-                            case 7:
-                                tv_example.setText("80% des Wortes");
-                                break;
-                            case 8:
-                                tv_example.setText("85% des Wortes");
-                                break;
-                            case 9:
-                                tv_example.setText("90% des Wortes");
-                                break;
-                            case 10:
-                                tv_example.setText("100% des Wortes");
-                                break;
-                        }
-
-                    }
-                }, 800, 800);
-
-                break;
             case 2:
                 if(t_active == false)t.schedule(new TimerTask() {
                     @Override
@@ -151,42 +69,42 @@ static Bundle extras;
 
                         switch (sb_difficulty.getProgress()){
                             case 1:
-                                tv_example.setText("50% des Wortes");
+                                tv_example.setText("300 Sekunden");
                                 break;
                             case 2:
-                                tv_example.setText("55% des Wortes");
+                                tv_example.setText("260 Sekunden");
                                 break;
                             case 3:
-                                tv_example.setText("60% des Wortes");
+                                tv_example.setText("220 Sekunden");
                                 break;
                             case 4:
-                                tv_example.setText("65% des Wortes");
+                                tv_example.setText("200 Sekunden");
                                 break;
                             case 5:
-                                tv_example.setText("70% des Wortes");
+                                tv_example.setText("180 Sekunden");
                                 break;
                             case 6:
-                                tv_example.setText("75% des Wortes");
+                                tv_example.setText("160 Sekunden");
                                 break;
                             case 7:
-                                tv_example.setText("80% des Wortes");
+                                tv_example.setText("140 Sekunden");
                                 break;
                             case 8:
-                                tv_example.setText("85% des Wortes");
+                                tv_example.setText("120 Sekunden");
                                 break;
                             case 9:
-                                tv_example.setText("90% des Wortes");
+                                tv_example.setText("100 Sekunden");
                                 break;
                             case 10:
-                                tv_example.setText("100% des Wortes");
+                                tv_example.setText("60 Sekunden");
                                 break;
                         }
 
                     }
                 }, 800, 800);
+
                 break;
         }
-
 
 
 
@@ -195,7 +113,7 @@ static Bundle extras;
 
 
     public void button_saveToSolvesClicked(View view) {
-        int alarm_index = extras.getInt("alarm_index", -1);
+        alarm_index = extras.getInt("alarm_index", -1);
         if (alarm_index != -1) {
             Alarm a = AlarmsActivity.al_alarms.get(alarm_index);
             a.setAtheneosAlarm(true);
@@ -204,15 +122,16 @@ static Bundle extras;
             t.purge();
 
 
-            int task_index = extras.getInt("task_index");
+            task_index = extras.getInt("task_index");
             AlarmTask at = new AlarmTask(sb_number.getProgress(), sb_difficulty.getProgress(), extras.getInt("dom", 1), extras.getString("module_indexer", ""));
             a.al_AlarmTasks.set(task_index, at);
 
 
+            Intent intent = new Intent(this, EditAlarmActivity.class);
             extras = null;
             ChooseDomainActivity.extras = null;
             ChooseModuleActivity.extras = null;
-            Intent intent = new Intent(this, EditAlarmActivity.class);
+
             startActivity(intent);
         }
 

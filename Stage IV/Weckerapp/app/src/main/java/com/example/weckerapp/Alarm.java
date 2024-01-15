@@ -15,6 +15,8 @@ public class Alarm {
     boolean active;
     String displayed_title;
 
+
+
      ArrayList<AlarmTask> al_AlarmTasks;
 
 
