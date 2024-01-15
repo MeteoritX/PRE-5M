@@ -1,0 +1,52 @@
+<resources>
+    <string name="app_name">Atheneos</string>
+    <string name="text_button_setAlarm">Set Alarm</string>
+    <string name="text_switch_24h">24h format</string>
+    <string name="text_settings_title">Settings</string>
+    <string name="text_alarms_title">Alarms</string>
+    <string name="text_settings_24h">24h format</string>
+    <string name="text_button_start">Start</string>
+    <string name="text_button_stop">Stop</string>
+    <string name="text_delta_t">Elapsed Time: </string>
+
+    <string name="title_activity_alarms">AlarmsActivity</string>
+    <string name="text_button_saveSettings">Save</string>
+    <string name="text_button_startCountdown">Start Timer</string>
+    <string name="text_remainingSeconds">Remaining seconds: </string>
+    <string name="title_activity_edit_alarm">Edit alarm</string>
+    <string name="text_button_deleteAlarm">Remove alarm</string>
+    <string name="title_activity_popup_task_aktivity">Alarm</string>
+    <string name="button_text_deactivateAlarm">deactivate</string>
+    <string name="title_activity_solve_task">Task</string>//Notiz:
+    <string name="domain_mathematics">Mathematics</string>
+    <string name="domain_medicine">Medicine</string>
+    <string name="domain_linguistics">Linguistics</string>
+    <string name="title_activity_doms">Domain</string>
+    <string name="title_activity_choose_module">Module</string>
+
+    <string name="title_activity_choose_to_solves">Subtasks</string>
+    <string name="text_difficulty">Difficulty</string>
+    <string name="text_number_of_toSolves">Number of tasks</string>
+    <string name="text_example">Example:</string>
+    <string name="module_arithmetics">Arithmetic</string>
+    <string name="module_algebra">Algebra</string>
+    <string name="module_geometry">Geometry</string>
+    <string name="text_switch_nightMode">Night mode</string>
+    <string name="text_textScale">Text size</string>
+    <string name="text_primaryColour">Primary colour</string>
+    <string name="text_secondaryColour">Secondary colour</string>
+    <string name="title_activity_colour_picker">Pick colour</string>
+    <string name="text_switch_reducedMode">UI reduction</string>
+    <string name="module_anatomyTerms">Anatomy</string>
+    <string name="module_anatomyModel">Anatomy (model) </string>
+    <string name="module_somethingMedical">Something medical</string>
+    <string name="module_englishDic">English</string>
+    <string name="module_lateinDic">Latin</string>
+    <string name="module_spanishDic">Spanish</string>
+    <string name="title_activity_solve_task_medical">SolveTaskMedical</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="title_activity_solve_task_linguistics">SolveTaskLinguistics</string>
+    <string name="title_activity_show_score">My score</string>
+    <string name="text_button_back">Back</string>
+</resources>
