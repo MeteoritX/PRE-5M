@@ -37,6 +37,9 @@ import android.widget.Toast;
 
 import com.example.weckerapp.alarmTasks.AlarmTask;
 
+import org.xmlpull.v1.XmlPullParserException;
+
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -88,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
 
         tc = findViewById(R.id.tec);

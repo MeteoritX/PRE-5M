@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Icon;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -27,13 +28,15 @@ import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.Queue;
 import java.util.Timer;
 
 public class SolveTaskMath extends AppCompatActivity {
 
 
-    ArrayMap<String, String> dic;
+    ArrayMap<String, String> dicMed;
+    ArrayMap<String, String> dicLingu;
     TextView tv_toSolve;
     TextView tv_total_solved;
     EditText et_input;
@@ -41,7 +44,9 @@ public class SolveTaskMath extends AppCompatActivity {
     ProgressBar pb_remaining_time;
     FloatingActionButton button_mute;
     static CountDownTimer countdown_timer;
-    static MediaPlayer mediaPlayer;
+    MediaPlayer mediaPlayer1;
+
+    MediaPlayer mediaPlayer2;
     static boolean timerIsActive;
 
     Queue<AlarmTask> task_queue;
@@ -60,12 +65,26 @@ public class SolveTaskMath extends AppCompatActivity {
     int toSolves;
     int solved;
     int currentOutcome;
-    boolean isFinish = false;
+
+    Icon icon1;
+    Icon icon2;
     //--------------------------------------
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if(mediaPlayer1 == null) {
+            mediaPlayer1 = MediaPlayer.create(this, R.raw.solving_music);
+        }
+        if(mediaPlayer2 == null) {
+            mediaPlayer2 = MediaPlayer.create(this, R.raw.repetitive_bssssw);
+        }
+
+        icon1 = Icon.createWithResource(this, R.drawable.baseline_music_note_24);
+        icon2 = Icon.createWithResource(this, R.drawable.baseline_music_off_24);
+
+
 
         setContentView(R.layout.activity_solve_task_math);
         setSupportActionBar(findViewById(R.id.toolbar_solve));
@@ -73,7 +92,9 @@ public class SolveTaskMath extends AppCompatActivity {
 
         Intent testIntent = getIntent();
         Bundle b = testIntent.getExtras();
+
         alarm_index = b.getInt("alarm_index", -1); //nullpointer
+
         button_check = findViewById(R.id.button_check);
         task_queue = new ArrayDeque<>();
         pb_remaining_time = findViewById(R.id.progressBar_solveTask);
@@ -102,19 +123,16 @@ public class SolveTaskMath extends AppCompatActivity {
 
 
     public void button_muteClicked(View view) {
-        if(!isFinish) {
-            if (mediaPlayer.isPlaying()) {
-                mediaPlayer.pause();
-                mp_position = mediaPlayer.getCurrentPosition();
-                button_mute.setImageResource(R.drawable.baseline_music_note_24);
+        if (mediaPlayer1.isPlaying()) {
+            mediaPlayer1.pause();
+            mp_position = mediaPlayer1.getCurrentPosition();
+            button_mute.setImageIcon(icon1);
 
-            } else {
-                mediaPlayer = MediaPlayer.create(this, R.raw.solving_music);
-                mediaPlayer.start();
-                mediaPlayer.pause();
-                mediaPlayer.seekTo(mp_position);
-                mediaPlayer.start();
-                button_mute.setImageResource(R.drawable.baseline_music_off_24);
+        } else {
+            if(!mediaPlayer2.isPlaying()) {
+                mediaPlayer1.seekTo(mp_position);
+                mediaPlayer1.start();
+                button_mute.setImageIcon(icon2);
             }
         }
     }
@@ -133,8 +151,8 @@ public class SolveTaskMath extends AppCompatActivity {
     public void startSpecificTimer(int seconds_for_task_completion) {
         if (timerIsActive == false) {
 
-            mediaPlayer = MediaPlayer.create(this, R.raw.solving_music);
-            mediaPlayer.start();
+
+            mediaPlayer1.start();
             pb_remaining_time.setMax(seconds_for_task_completion * 10);
             pb_remaining_time.setProgress(seconds_for_task_completion * 10);
             countdown_timer = new CountDownTimer(seconds_for_task_completion * 1000, 200) {
@@ -148,11 +166,9 @@ public class SolveTaskMath extends AppCompatActivity {
                 @Override
                 public void onFinish() {
                     if (timerIsActive == true) {
-                        isFinish = true;
-                        mediaPlayer.stop();
-                        mediaPlayer = MediaPlayer.create(context, R.raw.repetitive_bssssw);
-                        mediaPlayer.start();
-                        mediaPlayer.setVolume(1.0f, 1.0f);
+                        mediaPlayer1.stop();
+                        mediaPlayer2.start();
+                        mediaPlayer2.setVolume(1.0f, 1.0f);
                         timerIsActive = false;
                     }
                 }
@@ -173,14 +189,21 @@ public class SolveTaskMath extends AppCompatActivity {
             tv_total_solved.setText("0/" + toSolves);
             solved = 0;
             //Sound next task
-            generateMathTask();
+            if(task.getDom() == 0){
+                generateMathTask();
+            } else if (task.getDom() == 1) {
+                generateMedicalTask();
+            } else if (task.getDom() == 2) {
+                generateLinguisticsTask();
+            }
         } else {
-            //All done - no ToSolves left
-            //Toast.makeText(this,"Sehr gut gemacht", Toast.LENGTH_SHORT).show();
-            if (mediaPlayer.isPlaying()) mediaPlayer.stop();
+            if (mediaPlayer1.isPlaying()) mediaPlayer1.stop();
+            if (mediaPlayer2.isPlaying()) mediaPlayer2.stop();
             if (timerIsActive) countdown_timer.cancel();
-            CurrentTask.current_task++;
+
+
             Intent intent = new Intent(context, MainActivity.class);
+            intent.putExtra("alarm_index", alarm_index);
             intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);
             if (context instanceof Activity) {
@@ -188,9 +211,28 @@ public class SolveTaskMath extends AppCompatActivity {
             }
 
             Runtime.getRuntime().exit(0);
-            //Sound done
         }
 
+    }
+
+    public void generateMedicalTask() throws XmlPullParserException, IOException {
+        if(dicMed == null) {
+            dicMed = XMLMedLingu.XMLMed();
+        }
+        int word = (int) (dicMed.size() * Math.random());
+        String key = dicMed.keyAt(word);
+        tv_toSolve.setText(key);
+        startSpecificTimer(time4task);
+    }
+
+    public void generateLinguisticsTask() throws XmlPullParserException, IOException {
+        if(dicLingu == null) {
+            dicLingu = XMLMedLingu.XMLLingu();
+        }
+        int word = (int) (dicLingu.size() * Math.random());
+        String key = dicLingu.keyAt(word);
+        tv_toSolve.setText(key);
+        startSpecificTimer(time4task);
     }
 
 
@@ -235,22 +277,66 @@ public class SolveTaskMath extends AppCompatActivity {
     public void button_checkClicked(View view) throws XmlPullParserException, IOException {
 
 
-        if (et_input.getText().toString().equals("" + currentOutcome)) {
-            solved += 1;
-            tv_total_solved.setText(solved + "/" + toSolves);
-            mediaPlayer.stop();
-            timerIsActive = false;
-            countdown_timer.cancel();
-            et_input.setText("");
-            if (solved >= toSolves) {
-                inflateTask();
-                return;
+        if(task.getDom() == 0) {
+            if (et_input.getText().toString().equals("" + currentOutcome)) {
+                solved += 1;
+                tv_total_solved.setText(solved + "/" + toSolves);
+                mediaPlayer1.stop();
+                mediaPlayer2.stop();
+                timerIsActive = false;
+                countdown_timer.cancel();
+                et_input.setText("");
+                if (solved >= toSolves) {
+                    inflateTask();
+                    return;
+                }
+                generateMathTask();
+            } else {
+                //Sound incorrect
             }
-            generateMathTask();
-        } else {
-            //Sound incorrect
+        } else if (task.getDom() == 1) {
+            if (et_input.getText().toString().equals(dicMed.get(tv_toSolve.getText()))) {
+                solved += 1;
+                tv_total_solved.setText(solved + "/" + toSolves);
+                mediaPlayer1.stop();
+                mediaPlayer2.stop();
+                timerIsActive = false;
+                countdown_timer.cancel();
+                et_input.setText("");
+                if (solved >= toSolves) {
+                    inflateTask();
+                    return;
+                }
+                if(task.getDom() == 1){
+                    generateMedicalTask();
+                } else if (task.getDom() == 2) {
+                    generateLinguisticsTask();
+                }
+            } else {
+                //Sound incorrect
+            }
+        } else if (task.getDom() == 2) {
+            if (et_input.getText().toString().equals(dicLingu.get(tv_toSolve.getText()))) {
+                solved += 1;
+                tv_total_solved.setText(solved + "/" + toSolves);
+                mediaPlayer1.stop();
+                mediaPlayer2.stop();
+                timerIsActive = false;
+                countdown_timer.cancel();
+                et_input.setText("");
+                if (solved >= toSolves) {
+                    inflateTask();
+                    return;
+                }
+                if(task.getDom() == 1){
+                    generateMedicalTask();
+                } else if (task.getDom() == 2) {
+                    generateLinguisticsTask();
+                }
+            } else {
+                //Sound incorrect
+            }
         }
-
 
     }
 

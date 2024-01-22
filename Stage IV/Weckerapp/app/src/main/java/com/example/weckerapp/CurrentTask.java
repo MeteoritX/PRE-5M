@@ -1,5 +1,5 @@
 package com.example.weckerapp;
 
 public class CurrentTask {
-    static int current_task;
+    public static int current_task = 0;
 }

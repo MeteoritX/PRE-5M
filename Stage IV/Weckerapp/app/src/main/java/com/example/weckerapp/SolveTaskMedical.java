@@ -27,6 +27,7 @@ import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.Queue;
 import java.util.Timer;
 
@@ -131,13 +132,13 @@ public class SolveTaskMedical extends AppCompatActivity {
     }
 
     public void queueValidTasks() {
-        for (AlarmTask at : a.getAl_AlarmTasks()) {
-            if (at == null) {
-                continue;
-            } else {
-                task_queue.add(at);
-            }
+        ArrayList<AlarmTask> at = a.getAl_AlarmTasks();
+        if (at == null) {
+
+        } else {
+            task_queue.add(at.get(CurrentTask.current_task));
         }
+
     }
 
 
@@ -189,15 +190,9 @@ public class SolveTaskMedical extends AppCompatActivity {
             if (mediaPlayer2.isPlaying()) mediaPlayer2.stop();
             if (timerIsActive) countdown_timer.cancel();
 
-            CurrentTask.current_task++;
-            Intent intent = new Intent(context, MainActivity.class);
-            intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
-            context.startActivity(intent);
-            if (context instanceof Activity) {
-                ((Activity) context).finish();
-            }
-
-            Runtime.getRuntime().exit(0);
+            Intent intent = new Intent(context, PopupTaskAktivity.class);
+            intent.putExtra("alarm_index", alarm_index);
+            startActivity(intent);
             //Sound done
         }
 

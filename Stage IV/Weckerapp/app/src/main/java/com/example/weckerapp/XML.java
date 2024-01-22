@@ -14,6 +14,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class XML {
+
     public static ArrayMap<String, String> readXML(String filename, String sprache1, String sprache2) throws IOException, XmlPullParserException {
         AssetManager assetManager = MainActivity.ctx.getAssets();
         InputStream stream = assetManager.open(filename);
@@ -40,7 +41,6 @@ public class XML {
 
         }
         stream.close();
-        assetManager.close();
         return dic;
     }
 }

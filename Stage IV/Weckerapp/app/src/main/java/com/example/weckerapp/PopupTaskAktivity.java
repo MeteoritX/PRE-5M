@@ -4,8 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Debug;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -18,6 +20,7 @@ import androidx.navigation.ui.NavigationUI;
 import com.example.weckerapp.alarmTasks.AlarmTask;
 import com.example.weckerapp.databinding.ActivityPopupTaskAktivityBinding;
 
+import java.io.Console;
 import java.util.ArrayList;
 
 public class PopupTaskAktivity extends AppCompatActivity {
@@ -26,6 +29,8 @@ public class PopupTaskAktivity extends AppCompatActivity {
     int index_of_alarm;
     Button button_deactivateAlarm;
     int task_index;
+
+    ArrayList<AlarmTask> TaskList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,39 +44,36 @@ public class PopupTaskAktivity extends AppCompatActivity {
         if(index_of_alarm != -1){
             tv.setText(AlarmsActivity.al_alarms.get(index_of_alarm).displayed_title);
         }
+
+        TaskList = AlarmsActivity.al_alarms.get(index_of_alarm).getAl_AlarmTasks();
+
         loadSettings();
     }
 
     public void button_deactivateAlarmClicked(View view) {
         MainActivity.mediaPlayer.stop();
         Intent intent;
-
+        intent = null;
         if(index_of_alarm != -1 && AlarmsActivity.al_alarms.get(index_of_alarm).atheneosAlarm){
-            ArrayList<AlarmTask> TaskList = AlarmsActivity.al_alarms.get(index_of_alarm).getAl_AlarmTasks();
 
-            int i = CurrentTask.current_task;
 
-            int a = TaskList.get(CurrentTask.current_task).getDom();
-
-            switch (TaskList.get(CurrentTask.current_task).getDom()){
+            switch (TaskList.get(0).getDom()){
                 case 0:
                     intent = new Intent(this, SolveTaskMath.class);
-                    CurrentTask.current_task++;
+                    intent.putExtra("alarm_index", index_of_alarm);
+                    CurrentTask.current_task = CurrentTask.current_task + 1;
                     startActivity(intent);
                     break;
                 case 1:
-                    intent = new Intent(this, SolveTaskMedical.class);
+                    intent = new Intent(this, SolveTaskMath.class);
+                    intent.putExtra("alarm_index", index_of_alarm);
                     CurrentTask.current_task++;
                     startActivity(intent);
                     break;
                 case 2:
-                    intent = new Intent(this, SolveTaskLinguistics.class);
-                    CurrentTask.current_task++;
-                    startActivity(intent);
-                    break;
-                default:
                     intent = new Intent(this, SolveTaskMath.class);
-                    CurrentTask.current_task++;
+                    intent.putExtra("alarm_index", index_of_alarm);
+                    CurrentTask.current_task = CurrentTask.current_task + 1;
                     startActivity(intent);
                     break;
             }
@@ -79,11 +81,10 @@ public class PopupTaskAktivity extends AppCompatActivity {
         }else{
             //Clearance for next alarm
             MainActivity.audioActivated = false;
-            //CurrentTask.current_task = 0;
+            CurrentTask.current_task = 0;
             intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
         }
-        intent.putExtra("alarm_index", index_of_alarm);
-        startActivity(intent);
     }
 
     public void loadSettings(){

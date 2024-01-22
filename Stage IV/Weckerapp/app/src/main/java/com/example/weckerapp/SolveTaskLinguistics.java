@@ -80,13 +80,13 @@ public class SolveTaskLinguistics extends AppCompatActivity {
         icon2 = Icon.createWithResource(this, R.drawable.baseline_music_off_24);
 
         setContentView(R.layout.activity_solve_task_linguistics);
-
         setSupportActionBar(findViewById(R.id.toolbar_solve));
         getSupportActionBar().setTitle(getResources().getString(R.string.title_activity_solve_task));
-
         Intent testIntent = getIntent();
         Bundle b = testIntent.getExtras();
+
         alarm_index = b.getInt("alarm_index", -1); //nullpointer
+
         button_check = findViewById(R.id.button_check);
         task_queue = new ArrayDeque<>();
         pb_remaining_time = findViewById(R.id.progressBar_solveTask);
@@ -188,15 +188,10 @@ public class SolveTaskLinguistics extends AppCompatActivity {
             if (mediaPlayer2.isPlaying()) mediaPlayer2.stop();
             if (timerIsActive) countdown_timer.cancel();
 
-            CurrentTask.current_task++;
-            Intent intent = new Intent(context, MainActivity.class);
-            intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
-            context.startActivity(intent);
-            if (context instanceof Activity) {
-                ((Activity) context).finish();
-            }
+            //Änderung
+            Intent intent = new Intent(context, PopupTaskAktivity.class);
+            startActivity(intent);
 
-            Runtime.getRuntime().exit(0);
             //Sound done
         }
 
