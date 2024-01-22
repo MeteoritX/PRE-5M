@@ -14,6 +14,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Weckerapp">
         <activity
+            android:name=".ShowScoreActivity"
+            android:exported="false"
+            android:label="@string/title_activity_show_score"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/Theme.Weckerapp.NoActionBar"
+            />
+        <activity
             android:name=".SolveTaskLinguistics"
             android:exported="false"
             android:label="@string/title_activity_solve_task_linguistics"

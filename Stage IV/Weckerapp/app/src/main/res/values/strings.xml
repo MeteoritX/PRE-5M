@@ -45,6 +45,8 @@
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
     <string name="title_activity_solve_task_linguistics">SolveTaskLinguistics</string>
+    <string name="title_activity_show_score">Mein Score</string>
+    <string name="text_button_back">Zurück</string>
 
 
 </resources>

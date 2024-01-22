@@ -2,6 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <item android:id="@+id/score"
+        android:icon="@drawable/baseline_star_24"
+        android:title="Settings"
+        app:showAsAction="ifRoom"/>
+
     <item android:id="@+id/alarms"
         android:icon="@drawable/baseline_alarm_24"
         android:title="Alarm"
